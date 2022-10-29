@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -20,11 +21,17 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.GET, "/**").permitAll()
+<<<<<<< HEAD
                 .antMatchers(HttpMethod.POST, "/e-commerce").hasRole("ADMIN")
 //                .antMatchers(HttpMethod.DELETE, "/parking-spot/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
+=======
+                .antMatchers(HttpMethod.POST, "/e-commerce").hasRole("USER")
+                .antMatchers(HttpMethod.DELETE, "/e-commerce/**").hasRole("ADMIN")
+                .anyRequest().authenticated();
+>>>>>>> fcad320233646e75ca809b55f58f58c4dc2bd2d1
         return http.build();
     }
 

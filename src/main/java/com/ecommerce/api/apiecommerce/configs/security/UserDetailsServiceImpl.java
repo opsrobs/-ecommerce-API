@@ -21,6 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+<<<<<<< HEAD
         UserModels userModel = userRepository.findByUserName(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
         return new User(userModel.getUsername(),
@@ -30,5 +31,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 true,
                 true,
                 userModel.getAuthorities());
+=======
+        System.err.println(username);
+//        UserModels userModel= new UserModels();
+        UserModels userModel = userRepository.findByUserName(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
+        return new User(userModel.getUsername(), userModel.getPassword(), true, true, true,true, userModel.getAuthorities());
+>>>>>>> fcad320233646e75ca809b55f58f58c4dc2bd2d1
     }
 }
