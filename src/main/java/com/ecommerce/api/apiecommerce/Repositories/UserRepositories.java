@@ -8,8 +8,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepositories extends JpaRepository<UserModels, UUID> {
+public interface UserRepositories extends JpaRepository<UserModels, Long> {
     boolean existsByUserName(String username);
+
+    Optional<UserModels> findByUserName(String username);
 
 
 }

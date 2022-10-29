@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     final UserRepositories userRepositorie;
@@ -25,6 +27,10 @@ public class UserService {
     }
     public Page<UserModels> findAll(Pageable pageable) {
         return userRepositorie.findAll(pageable);
+    }
+
+    public Optional<UserModels> findById (long id){
+        return userRepositorie.findById(id);
     }
 
 }

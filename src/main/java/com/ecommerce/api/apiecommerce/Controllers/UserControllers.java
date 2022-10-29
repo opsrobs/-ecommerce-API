@@ -10,9 +10,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -42,8 +44,18 @@ public class UserControllers {
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserModels>> getAllCargos(@PageableDefault(
+    public ResponseEntity<Page<UserModels>> getAllUsers(@PageableDefault(
             page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll(pageable));
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getOneParkingSpot(@PathVariable(value = "id") long id){
+        Optional<UserModels> userModelsOptional = userService.findById(id);
+        if (!userModelsOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(userModelsOptional.get());
     }
 }

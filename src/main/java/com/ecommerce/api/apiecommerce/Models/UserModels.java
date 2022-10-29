@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,7 +16,7 @@ public class UserModels implements UserDetails, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID userID;
+    private long userID;
     @Column(nullable = false)
     private String userName;
     @Column(nullable = false)
@@ -24,8 +25,13 @@ public class UserModels implements UserDetails, Serializable {
     private String last_name;
     @Column(nullable = false)
     private String password;
+    @ManyToMany
+    @JoinTable(name = "TB_USERS_ROLES",
+    joinColumns = @JoinColumn(name= "user_id"),
+    inverseJoinColumns = @JoinColumn(name= "role_id"))
+    private List<RolesModels> roles;
 
-    public UserModels(UUID userID, String userName, String first_name, String last_name, String password) {
+    public UserModels(long userID, String userName, String first_name, String last_name, String password) {
         this.userID = userID;
         this.userName = userName;
         this.first_name = first_name;
@@ -36,26 +42,26 @@ public class UserModels implements UserDetails, Serializable {
     public UserModels() {
     }
 
-    public UUID getUserID() {
+    public long getUserID() {
         return userID;
     }
 
-    public void setUserID(UUID userID) {
+    public void setUserID(long userID) {
         this.userID = userID;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles;
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public String getUsername() {
-        return userName;
+        return this.userName;
     }
 
     @Override
@@ -96,5 +102,15 @@ public class UserModels implements UserDetails, Serializable {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    @Override
+    public String toString() {
+        return "UserModels{" +
+                "userID=" + userID +
+                ", userName='" + userName + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                '}';
     }
 }
