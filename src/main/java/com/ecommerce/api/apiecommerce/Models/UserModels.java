@@ -79,7 +79,7 @@ public class UserModels implements UserDetails, Serializable {
     }
 
     public void setUsername(String username) {
-        this.userName = username;
+        this.userName = userName;
     }
 
     public String getFirst_name() {
