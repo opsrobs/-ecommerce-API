@@ -17,7 +17,7 @@ public class UserModels implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userID;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String userName;
     @Column(nullable = false)
     private String first_name;
