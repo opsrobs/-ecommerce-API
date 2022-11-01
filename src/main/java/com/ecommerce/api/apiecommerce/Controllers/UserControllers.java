@@ -28,17 +28,19 @@ public class UserControllers {
     }
 
 
-    @PostMapping
+    @PostMapping("/new-user")
     public ResponseEntity<Object> saveUsers(@RequestBody @Valid UserDto userDto){
         if (userService.existsByUserName(userDto.getUsername())){
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("Conflict: This username already been created!");
         }
         var userModels = new UserModels();
-        System.err.println(userDto);
+//        userModels.setUsername();
+//        userModels.setFirst_name();
+//        userModels.setLast_name();
+//        userModels.set
         BeanUtils.copyProperties(userDto,userModels);
-        System.err.println(userDto.toString()+ "  ++  "
-                + userModels.toString());
+        System.err.println(userDto +"\n" + userModels);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.save(userModels));
     }

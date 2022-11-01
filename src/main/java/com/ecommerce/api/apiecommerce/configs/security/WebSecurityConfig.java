@@ -29,10 +29,14 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests()
 //                .antMatchers(HttpMethod.GET, "/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/**").hasRole("USER")
-                .antMatchers(HttpMethod.POST, "/e-commerce/**").hasRole("USER")
+//                .antMatchers(HttpMethod.POST, "/e-commerce/new-user").hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/e-commerce/new-user").permitAll()
+                .antMatchers(HttpMethod.POST, "/e-commerce/").hasRole("USER")
 //                .antMatchers(HttpMethod.DELETE, "/parking-spot/**").hasRole("ADMIN")
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf().disable();
         return http.build();
     }
 

@@ -31,6 +31,15 @@ public class UserModels implements UserDetails, Serializable {
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
 
+    public UserModels(long userID, String userName, String first_name, String last_name, String password, List<RolesModels> roles) {
+        this.userID = userID;
+        this.userName = userName;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.password = password;
+        this.roles = roles;
+    }
+
     public UserModels(long userID, String userName, String first_name, String last_name, String password) {
         this.userID = userID;
         this.userName = userName;
@@ -104,6 +113,26 @@ public class UserModels implements UserDetails, Serializable {
         this.last_name = last_name;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<RolesModels> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RolesModels> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public String toString() {
         return "UserModels{" +
@@ -111,6 +140,8 @@ public class UserModels implements UserDetails, Serializable {
                 ", userName='" + userName + '\'' +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }
