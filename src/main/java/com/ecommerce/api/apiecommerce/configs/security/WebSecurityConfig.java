@@ -48,7 +48,8 @@ public class WebSecurityConfig {
         config.addAllowedMethod("*");
         config.setMaxAge(3600L);
         config.setAllowedOrigins(
-                Arrays.asList("http://localhost:8082")
+                Arrays.asList("http://localhost:8082",
+                        "http://localhost:8081")
         );
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
