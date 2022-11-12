@@ -44,8 +44,8 @@ public class UserControllers {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.save(userModels));
     }
-
-    @GetMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping("/")
     public ResponseEntity<Page<UserModels>> getAllUsers(@PageableDefault(
             page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll(pageable));
