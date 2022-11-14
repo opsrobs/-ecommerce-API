@@ -31,15 +31,21 @@ public class UserModels implements UserDetails, Serializable {
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
 
-    public UserModels(long userID, String userName, String first_name, String last_name, String password, List<RolesModels> roles) {
+    //============//
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<UserContatoModels> contatos;
+
+
+
+    public UserModels(long userID, String userName, String first_name, String last_name, String password, List<RolesModels> roles, List<UserContatoModels> contatos) {
         this.userID = userID;
         this.userName = userName;
         this.first_name = first_name;
         this.last_name = last_name;
         this.password = password;
         this.roles = roles;
+        this.contatos = contatos;
     }
-
     public UserModels(long userID, String userName, String first_name, String last_name, String password) {
         this.userID = userID;
         this.userName = userName;
@@ -131,6 +137,14 @@ public class UserModels implements UserDetails, Serializable {
 
     public void setRoles(List<RolesModels> roles) {
         this.roles = roles;
+    }
+
+    public List<UserContatoModels> getContatos() {
+        return contatos;
+    }
+
+    public void setContatos(List<UserContatoModels> contatos) {
+        this.contatos = contatos;
     }
 
     @Override
