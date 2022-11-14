@@ -21,9 +21,8 @@ public class VendaControllers {
     }
     @PostMapping
     public ResponseEntity <Object> saveVendas(@RequestBody UserModels user){
-         System.err.println(user.toString());
          return ResponseEntity.status(HttpStatus.CREATED).
-                body(vendaService.save(new VendaModels(0,user)));
+                body(vendaService.save(new VendaModels(user.getUserID())));
     }
 
 

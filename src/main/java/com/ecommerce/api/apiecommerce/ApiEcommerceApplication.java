@@ -9,7 +9,7 @@ public class ApiEcommerceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ApiEcommerceApplication.class, args);
-		System.out.println(new BCryptPasswordEncoder().encode("Batata"));
+		System.err.println("\n\nVai lá jovem. A API está de pé 👌👌👌");
 	}
 
 }

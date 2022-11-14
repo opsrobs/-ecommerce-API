@@ -8,9 +8,20 @@ public class VendaModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_venda;
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_pessoa", referencedColumnName = "userID")
-    private UserModels id_pessoa;
+    @Column
+    private long id_pessoa;
+
+    public VendaModels(long id_venda, long id_pessoa) {
+        this.id_venda = id_venda;
+        this.id_pessoa = id_pessoa;
+    }
+
+    public VendaModels(long id_pessoa) {
+        this.id_pessoa = id_pessoa;
+    }
+
+    public VendaModels() {
+    }
 
     public long getId_venda() {
         return id_venda;
@@ -20,23 +31,11 @@ public class VendaModels {
         this.id_venda = id_venda;
     }
 
-    public UserModels getId_pessoa() {
+    public long getId_pessoa() {
         return id_pessoa;
     }
 
-    public void setId_pessoa(UserModels id_pessoa) {
-        this.id_pessoa = id_pessoa;
-    }
-
-    public VendaModels(long id_venda, UserModels id_pessoa) {
-        this.id_venda = id_venda;
-        this.id_pessoa = id_pessoa;
-    }
-
-    public VendaModels() {
-    }
-
-    public VendaModels(UserModels id_pessoa) {
+    public void setId_pessoa(long id_pessoa) {
         this.id_pessoa = id_pessoa;
     }
 }
