@@ -35,12 +35,12 @@ public class UserContatoControllers {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneParkingSpot(@PathVariable(value = "id") long id){
+    public ResponseEntity<Object> getAllSales(@PathVariable(value = "id") long id){
         Optional<UserContatoModels> userContatoModels = userContatoServices.findById(id);
+        System.err.println(userContatoModels.get());
         if (!userContatoModels.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Contact not found");
         }
-        System.err.println(userContatoModels.toString());
         return ResponseEntity.status(HttpStatus.OK).body(userContatoModels.get());
     }
 

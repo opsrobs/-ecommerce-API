@@ -12,7 +12,6 @@ import java.util.UUID;
 @Entity
 @Table(name= "Users")
 public class UserModels implements UserDetails, Serializable {
-    public static final long serialVersionUUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,6 +45,7 @@ public class UserModels implements UserDetails, Serializable {
         this.roles = roles;
         this.contatos = contatos;
     }
+
     public UserModels(long userID, String userName, String first_name, String last_name, String password) {
         this.userID = userID;
         this.userName = userName;
@@ -156,6 +156,7 @@ public class UserModels implements UserDetails, Serializable {
                 ", last_name='" + last_name + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
+                ", contatos=" + contatos +
                 '}';
     }
 }
