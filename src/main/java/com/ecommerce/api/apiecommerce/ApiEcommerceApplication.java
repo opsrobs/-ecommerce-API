@@ -11,5 +11,4 @@ public class ApiEcommerceApplication {
 		SpringApplication.run(ApiEcommerceApplication.class, args);
 		System.out.println(new BCryptPasswordEncoder().encode("Batata"));
 	}
-
 }
