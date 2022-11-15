@@ -33,6 +33,7 @@ public class UserContatoControllers {
     public ResponseEntity<Object> saveUserContact(@RequestBody @Valid UserContatoDto userContatoDto){
         var userContatoModels = new UserContatoModels();
         BeanUtils.copyProperties(userContatoDto,userContatoModels);
+        userContatoModels.setDate_created(new Date());
         System.err.println(userContatoDto +"\n" + userContatoModels);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userContatoServices.save(userContatoModels));
@@ -58,9 +59,6 @@ public class UserContatoControllers {
         }
         var userContatoModels = new UserContatoModels();
         BeanUtils.copyProperties(userContatoDto, userContatoModels);
-        System.err.println(userContatoModels.getUser().getUserID());
-        userControllers.updateContactUser(userContatoDto.getUser().getUserID());
-
         userContatoModels.setId_contato(optionalUserContatoModels.get().getId_contato());
         userContatoModels.setDate_created(new Date());
         userContatoModels.setTelefone(userContatoDto.getTelefone());
