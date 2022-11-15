@@ -23,7 +23,6 @@ public class UserContatoServices {
     }
 
     public Optional<UserContatoModels> findById (long id){
-        System.err.println("\n\nDebug");
         return userContatoRepositorie.findById(id);
     }
 }
