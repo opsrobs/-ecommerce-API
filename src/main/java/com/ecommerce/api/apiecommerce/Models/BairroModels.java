@@ -4,7 +4,8 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
-@Entity(name = "Bairro")
+@Entity
+@Table(name = "Bairro")
 public class BairroModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
