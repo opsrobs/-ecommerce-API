@@ -4,10 +4,12 @@ import com.ecommerce.api.apiecommerce.Models.BairroModels;
 import com.ecommerce.api.apiecommerce.Models.CityModels;
 import com.ecommerce.api.apiecommerce.Repositories.BairroRepositories;
 import com.ecommerce.api.apiecommerce.Repositories.CityRepositories;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+@Service
 public class BairroServices {
     final BairroRepositories bairroRepositories;
 

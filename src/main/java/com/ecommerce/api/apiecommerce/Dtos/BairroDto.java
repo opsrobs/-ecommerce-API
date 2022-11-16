@@ -1,5 +1,6 @@
 package com.ecommerce.api.apiecommerce.Dtos;
 
+import com.ecommerce.api.apiecommerce.Models.CityModels;
 import com.ecommerce.api.apiecommerce.Models.StadeModels;
 
 import javax.validation.constraints.NotNull;
@@ -8,9 +9,9 @@ public class BairroDto {
     @NotNull
     private String nome_bairro;
     @NotNull
-    private StadeModels city;
+    private CityModels city;
 
-    public BairroDto(String nome_bairro, StadeModels city) {
+    public BairroDto(String nome_bairro, CityModels city) {
         this.nome_bairro = nome_bairro;
         this.city = city;
     }
@@ -26,11 +27,11 @@ public class BairroDto {
         this.nome_bairro = nome_bairro;
     }
 
-    public StadeModels getCity() {
+    public CityModels getCity() {
         return city;
     }
 
-    public void setCity(StadeModels city) {
+    public void setCity(CityModels city) {
         this.city = city;
     }
 }
