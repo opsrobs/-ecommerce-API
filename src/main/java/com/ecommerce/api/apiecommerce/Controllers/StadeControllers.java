@@ -53,7 +53,7 @@ public class StadeControllers {
     }
 
     @GetMapping
-    public ResponseEntity<Page<StadeModels>> getAllParkingSpots(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+    public ResponseEntity<Page<StadeModels>> getAllStades(@PageableDefault(page = 0, size = 10, sort = "id_stade", direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(stadeServices.findAll(pageable));
     }
 }
