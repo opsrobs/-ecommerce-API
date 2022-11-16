@@ -1,6 +1,7 @@
 package com.ecommerce.api.apiecommerce.Models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name= "Stade")
@@ -13,6 +14,8 @@ public class StadeModels {
     private String UF;
     @Column(nullable = false)
     private String nome_estado;
+    @OneToMany(mappedBy = "stade", fetch = FetchType.EAGER)
+    private List<CityModels> city;
 
     public StadeModels(long id_stade, String UF, String nome_estado) {
         this.id_stade = id_stade;

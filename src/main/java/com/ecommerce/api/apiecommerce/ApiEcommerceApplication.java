@@ -11,5 +11,4 @@ public class ApiEcommerceApplication {
 		SpringApplication.run(ApiEcommerceApplication.class, args);
 		System.err.println("\n\nVai lá jovem. A API está de pé 👌👌👌");
 	}
-
 }
