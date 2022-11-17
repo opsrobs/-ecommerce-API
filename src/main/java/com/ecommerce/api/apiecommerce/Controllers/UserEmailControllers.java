@@ -1,11 +1,13 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
-import com.ecommerce.api.apiecommerce.Dtos.UserContatoDto;
 import com.ecommerce.api.apiecommerce.Dtos.UserEmailDto;
-import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
 import com.ecommerce.api.apiecommerce.Models.UserEmailModels;
 import com.ecommerce.api.apiecommerce.Services.UserEmailService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +63,12 @@ public class UserEmailControllers {
 
         return ResponseEntity.status(HttpStatus.OK).body(
                 userEmailService.save(userEmailModelsOptional.get()));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<UserEmailModels>> getAllUsers(@PageableDefault(
+            page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
+        return ResponseEntity.status(HttpStatus.OK).body(userEmailService.findAll(pageable));
     }
 
 

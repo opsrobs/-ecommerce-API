@@ -2,7 +2,10 @@ package com.ecommerce.api.apiecommerce.Services;
 
 import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
 import com.ecommerce.api.apiecommerce.Models.UserEmailModels;
+import com.ecommerce.api.apiecommerce.Models.UserModels;
 import com.ecommerce.api.apiecommerce.Repositories.UserEmailRepositories;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -22,5 +25,9 @@ public class UserEmailService {
 
     public Optional<UserEmailModels> findById (long id){
         return userEmailRepositories.findById(id);
+    }
+
+    public Page<UserEmailModels> findAll(Pageable pageable) {
+        return userEmailRepositories.findAll(pageable);
     }
 }
