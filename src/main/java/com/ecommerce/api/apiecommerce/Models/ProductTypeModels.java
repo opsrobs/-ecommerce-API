@@ -1,6 +1,10 @@
 package com.ecommerce.api.apiecommerce.Models;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name= "Tipo_Produto")
@@ -8,24 +12,29 @@ public class ProductTypeModels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_tipo;
+    private long id;
     @Column(nullable = false)
     private String nomeTipo;
 
-    public ProductTypeModels(long id_tipo, String nomeTipo) {
-        this.id_tipo = id_tipo;
+    @OneToMany(mappedBy = "categories", fetch = FetchType.EAGER) // OneToMany associate aos contacts
+    @Fetch(FetchMode.SUBSELECT)
+    private List<ProductModels> produtos;
+
+    public ProductTypeModels(long id, String nomeTipo, List<ProductModels> produtos) {
+        this.id = id;
         this.nomeTipo = nomeTipo;
+        this.produtos = produtos;
     }
 
     public ProductTypeModels() {
     }
 
-    public long getId_tipo() {
-        return id_tipo;
+    public long getid() {
+        return id;
     }
 
-    public void setId_tipo(long id_tipo) {
-        this.id_tipo = id_tipo;
+    public void setid(long id) {
+        this.id = id;
     }
 
     public String getNomeTipo() {
@@ -34,5 +43,14 @@ public class ProductTypeModels {
 
     public void setNomeTipo(String nomeTipo) {
         this.nomeTipo = nomeTipo;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductTypeModels{" +
+                "id=" + id +
+                ", nomeTipo='" + nomeTipo + '\'' +
+                ", produtos=" + produtos +
+                '}';
     }
 }

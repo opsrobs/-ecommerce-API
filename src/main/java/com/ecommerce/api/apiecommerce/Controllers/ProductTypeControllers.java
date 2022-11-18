@@ -41,7 +41,7 @@ public class ProductTypeControllers {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<Page<ProductTypeModels>> getAllCategories(@PageableDefault(
-            page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
+            page = 0,size = 10,sort = "id",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(porductTypeServices.findAll(pageable));
     }
 
