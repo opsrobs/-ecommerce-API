@@ -50,4 +50,14 @@ public class CityModels {
     public void setStade(StadeModels stade) {
         this.stade = stade;
     }
+
+    @Override
+    public String toString() {
+        return "CityModels{" +
+                "id_city=" + id_city +
+                ", nome_city='" + nome_city + '\'' +
+                ", bairro=" + bairro +
+                ", stade=" + stade +
+                '}';
+    }
 }
