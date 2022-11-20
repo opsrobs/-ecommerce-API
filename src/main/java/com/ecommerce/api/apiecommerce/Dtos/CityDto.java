@@ -2,21 +2,15 @@ package com.ecommerce.api.apiecommerce.Dtos;
 
 import com.ecommerce.api.apiecommerce.Models.StadeModels;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 
 public class CityDto {
-    @NotNull
-    private long id_city;
     @NotNull
     private String nome_city;
     @NotNull
     private StadeModels stade;
 
-    public CityDto(long id_city, String nome_city, StadeModels stade) {
-        this.id_city = id_city;
+    public CityDto(String nome_city, StadeModels stade) {
         this.nome_city = nome_city;
         this.stade = stade;
     }
@@ -30,14 +24,6 @@ public class CityDto {
     }
 
     public CityDto() {
-    }
-
-    public long getId_city() {
-        return id_city;
-    }
-
-    public void setId_city(long id_city) {
-        this.id_city = id_city;
     }
 
     public String getNome_city() {
