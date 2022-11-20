@@ -1,5 +1,9 @@
 package com.ecommerce.api.apiecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,7 +13,8 @@ public class UserContatoModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_contato;
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private UserModels user;
     @Column(nullable = false)
     private Date date_created;
@@ -73,7 +78,7 @@ public class UserContatoModels {
     public String toString() {
         return "UserContatoModels{" +
                 "id_contato=" + id_contato +
-                ", user=" + user +
+                ", user=" + user.getUserID() +
                 ", date_created=" + date_created +
                 ", status_telefone=" + status_telefone +
                 ", telefone='" + telefone + '\'' +
