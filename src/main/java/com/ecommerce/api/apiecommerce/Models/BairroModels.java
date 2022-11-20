@@ -1,43 +1,51 @@
 package com.ecommerce.api.apiecommerce.Models;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Bairro")
 public class BairroModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_bairro;
+    private long idBairro;
     @Column(nullable = false)
-    private String nome_bairro;
+    private String nomeBairro;
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private CityModels city;
 
-    public BairroModels(long id_bairro, String nome_bairro, CityModels city) {
-        this.id_bairro = id_bairro;
-        this.nome_bairro = nome_bairro;
+    //_________________//
+    @OneToMany(mappedBy = "bairro", fetch = FetchType.EAGER) // OneToMany associate aos Emails
+    @Fetch(FetchMode.SUBSELECT)
+    private List<EnderecoModels> endereco;
+
+    public BairroModels(long idBairro, String nomeBairro, CityModels city) {
+        this.idBairro = idBairro;
+        this.nomeBairro = nomeBairro;
         this.city = city;
     }
 
     public BairroModels() {
     }
 
-    public long getId_bairro() {
-        return id_bairro;
+    public long getIdBairro() {
+        return idBairro;
     }
 
-    public void setId_bairro(long id_bairro) {
-        this.id_bairro = id_bairro;
+    public void setIdBairro(long idBairro) {
+        this.idBairro = idBairro;
     }
 
-    public String getNome_bairro() {
-        return nome_bairro;
+    public String getNomeBairro() {
+        return nomeBairro;
     }
 
-    public void setNome_bairro(String nome_bairro) {
-        this.nome_bairro = nome_bairro;
+    public void setNomeBairro(String nomeBairro) {
+        this.nomeBairro = nomeBairro;
     }
 
     public CityModels getCity() {
@@ -46,5 +54,23 @@ public class BairroModels {
 
     public void setCity(CityModels city) {
         this.city = city;
+    }
+
+    public List<EnderecoModels> getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(List<EnderecoModels> endereco) {
+        this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "BairroModels{" +
+                "idBairro=" + idBairro +
+                ", nomeBairro='" + nomeBairro + '\'' +
+                ", city=" + city +
+                ", endereco=" + endereco +
+                '}';
     }
 }

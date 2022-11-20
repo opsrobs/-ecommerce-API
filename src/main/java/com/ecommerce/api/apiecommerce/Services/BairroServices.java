@@ -2,8 +2,11 @@ package com.ecommerce.api.apiecommerce.Services;
 
 import com.ecommerce.api.apiecommerce.Models.BairroModels;
 import com.ecommerce.api.apiecommerce.Models.CityModels;
+import com.ecommerce.api.apiecommerce.Models.ProductTypeModels;
 import com.ecommerce.api.apiecommerce.Repositories.BairroRepositories;
 import com.ecommerce.api.apiecommerce.Repositories.CityRepositories;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,5 +27,13 @@ public class BairroServices {
 
     public Optional<BairroModels> findById(long id) {
         return bairroRepositories.findById(id);
+    }
+
+    public boolean existsBynomeBairro(String nomeTipo){
+        return bairroRepositories.existsBynomeBairro(nomeTipo);
+    }
+
+    public Page<BairroModels> findAll(Pageable pageable) {
+        return bairroRepositories.findAll(pageable);
     }
 }

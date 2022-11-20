@@ -10,13 +10,13 @@ public class EnderecoDto {
     private String cep;
     @NotNull
     private String rua;
-    @Null
+    @NotNull
     private String complemento;
     @NotNull
     private long numero;
     @NotNull
     private Boolean ativo;
-    @NotNull
+
     private BairroModels bairro;
 
     public EnderecoDto(String cep, String rua, String complemento, long numero, Boolean ativo, BairroModels bairro) {

@@ -6,8 +6,13 @@ import com.ecommerce.api.apiecommerce.Models.BairroModels;
 import com.ecommerce.api.apiecommerce.Models.EnderecoModels;
 import com.ecommerce.api.apiecommerce.Services.EnderecoServices;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -40,5 +45,12 @@ public class EnderecoControllers {
         }
         System.err.println(optionalEnderecoModels.toString());
         return ResponseEntity.status(HttpStatus.OK).body(optionalEnderecoModels.get());
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping
+    public ResponseEntity<Page<EnderecoModels>> getAllAddress(@PageableDefault(
+            page = 0,size = 10,sort = "idEndereco",direction = Sort.Direction.ASC) Pageable pageable){
+        return ResponseEntity.status(HttpStatus.OK).body(enderecoServices.findAll(pageable));
     }
 }

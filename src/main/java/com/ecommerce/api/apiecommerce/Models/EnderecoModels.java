@@ -1,5 +1,6 @@
 package com.ecommerce.api.apiecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -10,8 +11,10 @@ public class EnderecoModels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_endereco;
-
+    private long idEndereco;
+    @JsonIgnore
+    @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
+    private BairroModels bairro;
     @Column(nullable = false)
     private String cep;
     @Column(nullable = false)
@@ -23,11 +26,10 @@ public class EnderecoModels {
     @Column(nullable = false)
     private Boolean ativo;
 
-    @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
-    private BairroModels bairro;
 
-    public EnderecoModels(long id_endereco, String cep, String rua, String complemento, long numero, Boolean ativo, BairroModels bairro) {
-        this.id_endereco = id_endereco;
+
+    public EnderecoModels(long idEndereco, String cep, String rua, String complemento, long numero, Boolean ativo, BairroModels bairro) {
+        this.idEndereco = idEndereco;
         this.cep = cep;
         this.rua = rua;
         this.complemento = complemento;
@@ -39,12 +41,12 @@ public class EnderecoModels {
     public EnderecoModels() {
     }
 
-    public long getId_endereco() {
-        return id_endereco;
+    public long getidEndereco() {
+        return idEndereco;
     }
 
-    public void setId_endereco(long id_endereco) {
-        this.id_endereco = id_endereco;
+    public void setidEndereco(long idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getCep() {
@@ -93,5 +95,18 @@ public class EnderecoModels {
 
     public void setBairro(BairroModels bairro) {
         this.bairro = bairro;
+    }
+
+    @Override
+    public String toString() {
+        return "EnderecoModels{" +
+                "idEndereco=" + idEndereco +
+                ", cep='" + cep + '\'' +
+                ", rua='" + rua + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", numero=" + numero +
+                ", ativo=" + ativo +
+                ", bairro=" + bairro +
+                '}';
     }
 }
