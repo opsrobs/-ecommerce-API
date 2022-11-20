@@ -8,11 +8,10 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class UserContatoDto {
-    @NotBlank
     private UserModels user;
     @NotNull
     private Date date_created;
-    @NotBlank
+    @NotNull
     private boolean status_telefone;
     @NotBlank
     private String telefone;

@@ -22,6 +22,7 @@ public class UserDto {
     private List<RolesModels> roles;
 
 
+
     public UserDto(String userName, String first_name, String last_name, String password, List<RolesModels> roles) {
         this.userName = userName;
         this.first_name = first_name;

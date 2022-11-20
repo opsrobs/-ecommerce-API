@@ -1,5 +1,7 @@
 package com.ecommerce.api.apiecommerce.Models;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,7 +14,6 @@ import java.util.UUID;
 @Entity
 @Table(name= "Users")
 public class UserModels implements UserDetails, Serializable {
-    public static final long serialVersionUUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,19 +26,24 @@ public class UserModels implements UserDetails, Serializable {
     private String last_name;
     @Column(nullable = false)
     private String password;
+
     @ManyToMany
     @JoinTable(name = "TB_USERS_ROLES",
     joinColumns = @JoinColumn(name= "user_id"),
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
 
-    //==============//
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // OneToMany associate aos contacts
+    @Fetch(FetchMode.SUBSELECT)
     private List<UserContatoModels> contatos;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // OneToMany associate aos Emails
+    @Fetch(FetchMode.SUBSELECT)
+    private List<UserEmailModels> emails;
 
 
 
-    public UserModels(long userID, String userName, String first_name, String last_name, String password, List<RolesModels> roles, List<UserContatoModels> contatos) {
+    public UserModels(long userID, String userName, String first_name, String last_name, String password,
+                      List<RolesModels> roles, List<UserContatoModels> contatos, List<UserEmailModels> emails) {
         this.userID = userID;
         this.userName = userName;
         this.first_name = first_name;
@@ -45,7 +51,9 @@ public class UserModels implements UserDetails, Serializable {
         this.password = password;
         this.roles = roles;
         this.contatos = contatos;
+        this.emails = emails;
     }
+
     public UserModels(long userID, String userName, String first_name, String last_name, String password) {
         this.userID = userID;
         this.userName = userName;
@@ -147,6 +155,14 @@ public class UserModels implements UserDetails, Serializable {
         this.contatos = contatos;
     }
 
+    public List<UserEmailModels> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<UserEmailModels> emails) {
+        this.emails = emails;
+    }
+
     @Override
     public String toString() {
         return "UserModels{" +
@@ -156,6 +172,8 @@ public class UserModels implements UserDetails, Serializable {
                 ", last_name='" + last_name + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
+                ", contatos=" + contatos +
+                ", emails=" + emails +
                 '}';
     }
 }
