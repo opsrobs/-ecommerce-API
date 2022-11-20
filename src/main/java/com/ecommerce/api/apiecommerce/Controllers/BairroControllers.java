@@ -38,7 +38,7 @@ public class BairroControllers {
     public ResponseEntity<Object> getBairro(@PathVariable(value = "id") long id){
         Optional<BairroModels> optionalBairroModels = bairroServices.findById(id);
         if (!optionalBairroModels.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("City not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Bairro not found");
         }
         System.err.println(optionalBairroModels.toString());
         return ResponseEntity.status(HttpStatus.OK).body(optionalBairroModels.get());
