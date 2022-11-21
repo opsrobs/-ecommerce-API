@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -17,6 +18,7 @@ public class EnderecoServices {
         this.enderecoRepositories = enderecoRepositories;
     }
 
+    @Transactional
     public EnderecoModels save(EnderecoModels enderecoModels){
         return enderecoRepositories.save(enderecoModels);
     }

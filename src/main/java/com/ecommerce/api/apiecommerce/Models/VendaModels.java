@@ -8,16 +8,17 @@ public class VendaModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_venda;
-    @Column
-    private long id_pessoa;
+    @Column(nullable = true)
+    private String nomeRecebedor;
 
-    public VendaModels(long id_venda, long id_pessoa) {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "numero_pedido")
+    private PedidoModels pedido;
+
+    public VendaModels(long id_venda, String nomeRecebedor, PedidoModels pedido) {
         this.id_venda = id_venda;
-        this.id_pessoa = id_pessoa;
-    }
-
-    public VendaModels(long id_pessoa) {
-        this.id_pessoa = id_pessoa;
+        this.nomeRecebedor = nomeRecebedor;
+        this.pedido = pedido;
     }
 
     public VendaModels() {
@@ -31,11 +32,19 @@ public class VendaModels {
         this.id_venda = id_venda;
     }
 
-    public long getId_pessoa() {
-        return id_pessoa;
+    public String getNomeRecebedor() {
+        return nomeRecebedor;
     }
 
-    public void setId_pessoa(long id_pessoa) {
-        this.id_pessoa = id_pessoa;
+    public void setNomeRecebedor(String nomeRecebedor) {
+        this.nomeRecebedor = nomeRecebedor;
+    }
+
+    public PedidoModels getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoModels pedido) {
+        this.pedido = pedido;
     }
 }

@@ -34,6 +34,7 @@ public class PedidoModels {
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private ClienteModels cliente;
 
+
     public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
         this.numeroPedido = numeroPedido;
         this.data_pedido = data_pedido;
