@@ -1,11 +1,10 @@
 package com.ecommerce.api.apiecommerce.Models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name= "Pessoa")
 public class PessoaModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,4 +17,7 @@ public class PessoaModels {
     private Date data_nasc;
     @Column(nullable = false)
     private boolean admin;
+
+    @OneToOne(mappedBy = "Pessoa")
+    private ClienteModels cliente;
 }

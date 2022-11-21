@@ -33,7 +33,6 @@ public class UserModels implements UserDetails, Serializable {
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
 
-    //============//
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // OneToMany associate aos contacts
     @Fetch(FetchMode.SUBSELECT)
     private List<UserContatoModels> contatos;
