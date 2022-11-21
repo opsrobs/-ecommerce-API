@@ -4,10 +4,11 @@ import com.ecommerce.api.apiecommerce.Models.PedidoModels;
 import com.ecommerce.api.apiecommerce.Repositories.PedidoRepositories;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
-
+@Service
 public class PedidoServices {
     final PedidoRepositories pedidoRepositories;
 
