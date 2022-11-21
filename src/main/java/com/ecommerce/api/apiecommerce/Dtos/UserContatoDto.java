@@ -1,6 +1,6 @@
 package com.ecommerce.api.apiecommerce.Dtos;
 
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class UserContatoDto {
-    private UserModels user;
+    private PessoaModels user;
     @NotNull
     private Date date_created;
     @NotNull
@@ -16,7 +16,7 @@ public class UserContatoDto {
     @NotBlank
     private String telefone;
 
-    public UserContatoDto(UserModels user, Date date_created, boolean status_telefone, String telefone) {
+    public UserContatoDto(PessoaModels user, Date date_created, boolean status_telefone, String telefone) {
         this.user = user;
         this.date_created = date_created;
         this.status_telefone = status_telefone;
@@ -26,11 +26,11 @@ public class UserContatoDto {
     public UserContatoDto() {
     }
 
-    public UserModels getUser() {
+    public PessoaModels getUser() {
         return user;
     }
 
-    public void setUser(UserModels user) {
+    public void setUser(PessoaModels user) {
         this.user = user;
     }
 

@@ -1,6 +1,6 @@
 package com.ecommerce.api.apiecommerce.Services;
 
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Repositories.UserRepositories;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,18 +18,18 @@ public class UserService {
     }
 
     @Transactional
-    public UserModels save(UserModels userModels){
-        return userRepositorie.save(userModels);
+    public PessoaModels save(PessoaModels PessoaModels){
+        return userRepositorie.save(PessoaModels);
     }
 
     public boolean existsByUserName(String username){
         return userRepositorie.existsByUserName(username);
     }
-    public Page<UserModels> findAll(Pageable pageable) {
+    public Page<PessoaModels> findAll(Pageable pageable) {
         return userRepositorie.findAll(pageable);
     }
 
-    public Optional<UserModels> findById (long id){
+    public Optional<PessoaModels> findById (long id){
         return userRepositorie.findById(id);
     }
 

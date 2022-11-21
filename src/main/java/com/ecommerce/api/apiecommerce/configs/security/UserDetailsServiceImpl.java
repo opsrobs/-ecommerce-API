@@ -1,5 +1,5 @@
 package com.ecommerce.api.apiecommerce.configs.security;
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Repositories.UserRepositories;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserModels userModel = userRepository.findByUserName(username)
+        PessoaModels userModel = userRepository.findByUserName(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
         return new User(userModel.getUsername(),
                 userModel.getPassword(),

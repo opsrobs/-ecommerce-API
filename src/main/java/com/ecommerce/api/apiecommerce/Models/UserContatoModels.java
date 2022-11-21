@@ -15,7 +15,7 @@ public class UserContatoModels {
     private long id_contato;
     @JsonIgnore
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
-    private UserModels user;
+    private PessoaModels user;
     @Column(nullable = false)
     private Date date_created;
     @Column(nullable = false)
@@ -23,7 +23,7 @@ public class UserContatoModels {
     @Column(nullable = false)
     private String telefone;
 
-    public UserContatoModels(long id_contato, UserModels user, Date date_created, boolean status_telefone, String telefone) {
+    public UserContatoModels(long id_contato, PessoaModels user, Date date_created, boolean status_telefone, String telefone) {
         this.id_contato = id_contato;
         this.user = user;
         this.date_created = date_created;
@@ -42,11 +42,11 @@ public class UserContatoModels {
         this.id_contato = id_contato;
     }
 
-    public UserModels getUser() {
+    public PessoaModels getUser() {
         return user;
     }
 
-    public void setUser(UserModels user) {
+    public void setUser(PessoaModels user) {
         this.user = user;
     }
 

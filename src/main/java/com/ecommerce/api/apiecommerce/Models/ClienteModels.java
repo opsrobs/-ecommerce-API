@@ -9,7 +9,7 @@ public class ClienteModels {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_cliente;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pessoa_id", referencedColumnName = "id_pessoa")
+    @JoinColumn(name = "pessoa_id", referencedColumnName = "userID")
     private PessoaModels pessoa;
 
     public ClienteModels(long id_cliente, PessoaModels pessoa) {

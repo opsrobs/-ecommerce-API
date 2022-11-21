@@ -1,6 +1,6 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Models.VendaModels;
 import com.ecommerce.api.apiecommerce.Services.VendaService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class VendaControllers {
         this.vendaService = vendaService;
     }
     @PostMapping
-    public ResponseEntity <Object> saveVendas(@RequestBody UserModels user){
+    public ResponseEntity <Object> saveVendas(@RequestBody PessoaModels user){
          return ResponseEntity.status(HttpStatus.CREATED).
                 body(vendaService.save(new VendaModels(user.getUserID())));
     }

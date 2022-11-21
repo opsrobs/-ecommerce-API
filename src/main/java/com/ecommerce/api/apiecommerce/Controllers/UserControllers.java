@@ -1,9 +1,9 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
 import com.ecommerce.api.apiecommerce.Dtos.UserContatoDto;
-import com.ecommerce.api.apiecommerce.Dtos.UserDto;
+import com.ecommerce.api.apiecommerce.Dtos.PessoaDto;
 import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Services.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -32,20 +32,20 @@ public class UserControllers {
 
 
     @PostMapping("/new-user")
-    public ResponseEntity<Object> saveUsers(@RequestBody @Valid UserDto userDto){
-        if (userService.existsByUserName(userDto.getUsername())){
+    public ResponseEntity<Object> saveUsers(@RequestBody @Valid PessoaDto PessoaDto){
+        if (userService.existsByUserName(PessoaDto.getUserName())){
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("Conflict: This username already been created!");
         }
-        var userModels = new UserModels();
-        BeanUtils.copyProperties(userDto,userModels);
-        System.err.println(userDto +"\n" + userModels);
+        var PessoaModels = new PessoaModels();
+        BeanUtils.copyProperties(PessoaDto,PessoaModels);
+        System.err.println(PessoaDto +"\n" + PessoaModels);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(userService.save(userModels));
+                .body(userService.save(PessoaModels));
     }
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
-    public ResponseEntity<Page<UserModels>> getAllUsers(@PageableDefault(
+    public ResponseEntity<Page<PessoaModels>> getAllUsers(@PageableDefault(
             page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll(pageable));
     }
@@ -53,44 +53,44 @@ public class UserControllers {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getUser(@PathVariable(value = "id") long id){
-        Optional<UserModels> userModelsOptional = userService.findById(id);
-        if (!userModelsOptional.isPresent()) {
+        Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
+        if (!PessoaModelsOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found");
         }
-        return ResponseEntity.status(HttpStatus.OK).body(userModelsOptional.get());
+        return ResponseEntity.status(HttpStatus.OK).body(PessoaModelsOptional.get());
     }
 
     @PutMapping("/{idd}")
     public ResponseEntity<Object> updateUser(@PathVariable(value = "id") long id,
-                                                    @RequestBody @Valid UserDto userDto){
-        Optional<UserModels> userModelsOptional = userService.findById(id);
-        if (!userModelsOptional.isPresent()) {
+                                                    @RequestBody @Valid PessoaDto PessoaDto){
+        Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
+        if (!PessoaModelsOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username not found");
         }
-        var userModels = new UserModels();
-        BeanUtils.copyProperties(userDto, userModels);
+        var PessoaModels = new PessoaModels();
+        BeanUtils.copyProperties(PessoaDto, PessoaModels);
 
-        userModels.setUserID(userModelsOptional.get().getUserID());
-        userModels.setUserName(userDto.getUserName());
-        userModels.setFirst_name(userDto.getFirst_name());
-        userModels.setLast_name(userDto.getLast_name());
+        PessoaModels.setUserID(PessoaModelsOptional.get().getUserID());
+        PessoaModels.setUserName(PessoaDto.getUserName());
+        PessoaModels.setNome(PessoaDto.getNome());
+//        PessoaModels.set(PessoaDto.getLast_name());
         return ResponseEntity.status(HttpStatus.OK).body(
-                userService.save(userModels));
+                userService.save(PessoaModels));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateContactUser(@PathVariable(value = "id") long id){
-        Optional<UserModels> userModelsOptional = userService.findById(id);
-        if (!userModelsOptional.isPresent()) {
+        Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
+        if (!PessoaModelsOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username not found");
         }
-        var userModels = new UserModels();
-        userModels.setUserID(userModelsOptional.get().getUserID());
-        userModels.setFirst_name(userModelsOptional.get().getFirst_name());
-        userModels.setLast_name(userModelsOptional.get().getLast_name());
-        userModels.setPassword(userModelsOptional.get().getPassword());
-        userModels.setUserName(userModelsOptional.get().getUserName());
+        var PessoaModels = new PessoaModels();
+        PessoaModels.setUserID(PessoaModelsOptional.get().getUserID());
+        PessoaModels.setNome(PessoaModelsOptional.get().getNome());
+//        PessoaModels.setLast_name(PessoaModelsOptional.get().getLast_name());
+        PessoaModels.setPassword(PessoaModelsOptional.get().getPassword());
+        PessoaModels.setUserName(PessoaModelsOptional.get().getUserName());
         return ResponseEntity.status(HttpStatus.OK).body(
-                userService.save(userModels));
+                userService.save(PessoaModels));
     }
 }
