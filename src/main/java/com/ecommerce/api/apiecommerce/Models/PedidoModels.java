@@ -10,7 +10,7 @@ import java.util.Date;
 public class PedidoModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long numero_pedido;
+    private long numeroPedido;
     @Column(nullable = false)
     private Date data_pedido;
     @Column(nullable = false)
@@ -26,7 +26,7 @@ public class PedidoModels {
     @Column(nullable = false)
     private Float peso_pedido;
     @Column(nullable = false)
-    private String nomeRecebedor;
+    private String nomeRecebedor;       //talvez seja interessante remover
 
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private EnderecoModels endereco;
@@ -34,8 +34,8 @@ public class PedidoModels {
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private ClienteModels cliente;
 
-    public PedidoModels(long numero_pedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
-        this.numero_pedido = numero_pedido;
+    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
+        this.numeroPedido = numeroPedido;
         this.data_pedido = data_pedido;
         this.valor = valor;
         this.status = status;
@@ -51,12 +51,12 @@ public class PedidoModels {
     public PedidoModels() {
     }
 
-    public long getNumero_pedido() {
-        return numero_pedido;
+    public long getnumeroPedido() {
+        return numeroPedido;
     }
 
-    public void setNumero_pedido(long numero_pedido) {
-        this.numero_pedido = numero_pedido;
+    public void setnumeroPedido(long numeroPedido) {
+        this.numeroPedido = numeroPedido;
     }
 
     public Date getData_pedido() {
