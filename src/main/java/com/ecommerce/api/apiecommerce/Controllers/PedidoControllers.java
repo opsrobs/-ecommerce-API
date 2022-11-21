@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/user-address-pedido")
+@RequestMapping("/api/user-pedido")
 public class PedidoControllers {
     private ServiceUtils utils = new ServiceUtils();
     final PedidoServices pedidoServices;
