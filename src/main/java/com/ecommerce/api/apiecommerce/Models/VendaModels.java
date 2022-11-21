@@ -12,7 +12,7 @@ public class VendaModels {
     private String nomeRecebedor;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "numero_pedido")
+    @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "numeroPedido")
     private PedidoModels pedido;
 
     public VendaModels(long id_venda, String nomeRecebedor, PedidoModels pedido) {
