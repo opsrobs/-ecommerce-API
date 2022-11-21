@@ -1,9 +1,9 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Dtos.CityDto;
 import com.ecommerce.api.apiecommerce.Dtos.VendaDto;
 import com.ecommerce.api.apiecommerce.Models.CityModels;
-import com.ecommerce.api.apiecommerce.Models.UserModels;
 import com.ecommerce.api.apiecommerce.Models.VendaModels;
 import com.ecommerce.api.apiecommerce.Services.VendaService;
 import org.springframework.beans.BeanUtils;

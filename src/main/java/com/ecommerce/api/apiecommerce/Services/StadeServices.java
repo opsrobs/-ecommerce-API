@@ -2,7 +2,7 @@ package com.ecommerce.api.apiecommerce.Services;
 
 import com.ecommerce.api.apiecommerce.Models.StadeModels;
 import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Repositories.StadeRepositories;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

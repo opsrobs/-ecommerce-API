@@ -1,6 +1,6 @@
 package com.ecommerce.api.apiecommerce.Dtos;
 
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 
@@ -12,7 +12,7 @@ import java.util.Date;
 public class UserEmailDto {
 
     @NotNull
-    private UserModels user;
+    private PessoaModels user;
     @NotNull
     private Date date_created;
     @NotNull
@@ -20,7 +20,7 @@ public class UserEmailDto {
     @NotNull
     private String email;
 
-    public UserEmailDto(UserModels user, Date date_created, boolean status_email, String email) {
+    public UserEmailDto(PessoaModels user, Date date_created, boolean status_email, String email) {
         this.user = user;
         this.date_created = date_created;
         this.status_email = status_email;
@@ -30,11 +30,11 @@ public class UserEmailDto {
     public UserEmailDto() {
     }
 
-    public UserModels getUser() {
+    public PessoaModels getUser() {
         return user;
     }
 
-    public void setUser(UserModels user) {
+    public void setUser(PessoaModels user) {
         this.user = user;
     }
 

@@ -11,10 +11,10 @@ import java.util.Date;
 public class UserEmailModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_email;
+    private long idEmail;
     @JsonIgnore
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
-    private UserModels user;
+    private PessoaModels user;
     @Column(nullable = false)
     private Date date_created;
     @Column(nullable = false)
@@ -22,8 +22,8 @@ public class UserEmailModels {
     @Column(nullable = false)
     private String email;
 
-    public UserEmailModels(long id_email, UserModels user, Date date_created, boolean status_email, String email) {
-        this.id_email = id_email;
+    public UserEmailModels(long idEmail, PessoaModels user, Date date_created, boolean status_email, String email) {
+        this.idEmail = idEmail;
         this.user = user;
         this.date_created = date_created;
         this.status_email = status_email;
@@ -33,19 +33,19 @@ public class UserEmailModels {
     public UserEmailModels() {
     }
 
-    public long getId_email() {
-        return id_email;
+    public long getidEmail() {
+        return idEmail;
     }
 
-    public void setId_email(long id_email) {
-        this.id_email = id_email;
+    public void setidEmail(long idEmail) {
+        this.idEmail = idEmail;
     }
 
-    public UserModels getUser() {
+    public PessoaModels getUser() {
         return user;
     }
 
-    public void setUser(UserModels user) {
+    public void setUser(PessoaModels user) {
         this.user = user;
     }
 
@@ -76,7 +76,7 @@ public class UserEmailModels {
     @Override
     public String toString() {
         return "UserEmailModels{" +
-                "id_email=" + id_email +
+                "idEmail=" + idEmail +
                 ", user=" + user +
                 ", date_created=" + date_created +
                 ", status_email=" + status_email +

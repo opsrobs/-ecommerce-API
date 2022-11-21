@@ -1,7 +1,7 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
 import com.ecommerce.api.apiecommerce.Dtos.UserContatoDto;
-import com.ecommerce.api.apiecommerce.Dtos.UserDto;
+import com.ecommerce.api.apiecommerce.Dtos.PessoaDto;
 import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
 import com.ecommerce.api.apiecommerce.Services.ServiceUtils;
 import com.ecommerce.api.apiecommerce.Services.UserContatoServices;
@@ -20,7 +20,7 @@ import java.util.Optional;
 public class UserContatoControllers {
 
     private ServiceUtils serviceUtils = new ServiceUtils();
-    private UserDto userDto = new UserDto();
+    private PessoaDto PessoaDto = new PessoaDto();
     final UserControllers userControllers;
     final UserContatoServices userContatoServices;
 

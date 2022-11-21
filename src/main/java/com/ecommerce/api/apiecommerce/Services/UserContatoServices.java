@@ -1,7 +1,7 @@
 package com.ecommerce.api.apiecommerce.Services;
 
 import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
-import com.ecommerce.api.apiecommerce.Models.UserModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Models.VendaModels;
 import com.ecommerce.api.apiecommerce.Repositories.UserContatoRepositorie;
 import org.springframework.stereotype.Service;
