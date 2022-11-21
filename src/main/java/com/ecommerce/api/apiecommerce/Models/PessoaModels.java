@@ -18,6 +18,6 @@ public class PessoaModels {
     @Column(nullable = false)
     private boolean admin;
 
-    @OneToOne(mappedBy = "Pessoa")
+    @OneToOne(mappedBy = "pessoa")
     private ClienteModels cliente;
 }
