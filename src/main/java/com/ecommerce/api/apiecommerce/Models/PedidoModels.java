@@ -34,6 +34,9 @@ public class PedidoModels {
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private ClienteModels cliente;
 
+    @OneToOne(mappedBy = "pedido")
+    private VendaModels venda;
+
     public PedidoModels(long numero_pedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
         this.numero_pedido = numero_pedido;
         this.data_pedido = data_pedido;
