@@ -16,7 +16,6 @@ public class ApiEcommerceApplication {
 
 	public static void main(String[] args) throws RuntimeException {
 		SpringApplication.run(ApiEcommerceApplication.class, args);
-		System.err.println(new BCryptPasswordEncoder().encode("senha123"));
 		System.err.println("\n\nVai lá jovem. A API está de pé 👌👌👌");
 	}
 }
