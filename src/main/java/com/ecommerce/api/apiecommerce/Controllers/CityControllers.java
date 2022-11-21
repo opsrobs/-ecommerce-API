@@ -32,7 +32,7 @@ public class CityControllers {
     }
 
     @PostMapping
-    public ResponseEntity<Object> saveStadeUser(@RequestBody @Valid CityDto cityDto){
+    public ResponseEntity<Object> saveCityUser(@RequestBody @Valid CityDto cityDto){
         var cityModels = new CityModels();
         BeanUtils.copyProperties(cityDto,cityModels);
         System.err.println(cityModels);
