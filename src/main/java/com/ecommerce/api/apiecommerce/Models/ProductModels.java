@@ -16,9 +16,20 @@ public class ProductModels {
     @Column( nullable = false)
     private float preco_produto;
 
+    @Column (nullable = false)
+    private String imagePath;
+
     @JsonIgnore
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private ProductTypeModels categories;
+
+    public ProductModels(long id, String nomeProduto, float preco_produto, String imagePath, ProductTypeModels categories) {
+        this.id = id;
+        this.nomeProduto = nomeProduto;
+        this.preco_produto = preco_produto;
+        this.imagePath = imagePath;
+        this.categories = categories;
+    }
 
     public ProductModels(long id, String nomeProduto, float preco_produto, ProductTypeModels categories) {
         this.id = id;
@@ -30,19 +41,19 @@ public class ProductModels {
     public ProductModels() {
     }
 
-    public long getid() {
+    public long getId() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getnomeProduto() {
+    public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public void setnomeProduto(String nomeProduto) {
+    public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
     }
 
@@ -52,6 +63,14 @@ public class ProductModels {
 
     public void setPreco_produto(float preco_produto) {
         this.preco_produto = preco_produto;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public ProductTypeModels getCategories() {
@@ -65,9 +84,10 @@ public class ProductModels {
     @Override
     public String toString() {
         return "ProductModels{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", nomeProduto='" + nomeProduto + '\'' +
-                ", preco_produto='" + preco_produto + '\'' +
+                ", preco_produto=" + preco_produto +
+                ", imagePath='" + imagePath + '\'' +
                 ", categories=" + categories +
                 '}';
     }

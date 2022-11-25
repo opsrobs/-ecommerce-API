@@ -14,10 +14,15 @@ public class ProductDto {
     @NotNull
     private ProductTypeModels categories;
 
-    public ProductDto(String nomeProduto, float preco_produto, ProductTypeModels categories) {
+    @NotNull
+    private String imagePath;
+
+
+    public ProductDto(String nomeProduto, float preco_produto, ProductTypeModels categories,  String imagePath) {
         this.nomeProduto = nomeProduto;
         this.preco_produto = preco_produto;
         this.categories = categories;
+        this.imagePath = imagePath;
     }
 
     public ProductDto() {
@@ -45,5 +50,15 @@ public class ProductDto {
 
     public void setCategories(ProductTypeModels categories) {
         this.categories = categories;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDto{" +
+                "nomeProduto='" + nomeProduto + '\'' +
+                ", preco_produto=" + preco_produto +
+                ", categories=" + categories +
+                ", imagePath='" + imagePath + '\'' +
+                '}';
     }
 }
