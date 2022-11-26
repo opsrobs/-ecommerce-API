@@ -1,29 +1,35 @@
 package com.ecommerce.api.apiecommerce.Dtos;
 
 import com.ecommerce.api.apiecommerce.Models.PedidoModels;
+import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 
 public class VendaDto {
-    @NotNull
-    private String nomeRecebedor;
+    @Nullable
+    private String codigoRastreio;
     @NotNull
     private PedidoModels pedido;
 
-    public VendaDto(String nomeRecebedor, PedidoModels pedido) {
-        this.nomeRecebedor = nomeRecebedor;
+    public VendaDto(@Nullable String codigoRastreio, PedidoModels pedido) {
+        this.codigoRastreio = codigoRastreio;
+        this.pedido = pedido;
+    }
+
+    public VendaDto(PedidoModels pedido) {
         this.pedido = pedido;
     }
 
     public VendaDto() {
     }
 
-    public String getNomeRecebedor() {
-        return nomeRecebedor;
+    @Nullable
+    public String getCodigoRastreio() {
+        return codigoRastreio;
     }
 
-    public void setNomeRecebedor(String nomeRecebedor) {
-        this.nomeRecebedor = nomeRecebedor;
+    public void setCodigoRastreio(@Nullable String codigoRastreio) {
+        this.codigoRastreio = codigoRastreio;
     }
 
     public PedidoModels getPedido() {

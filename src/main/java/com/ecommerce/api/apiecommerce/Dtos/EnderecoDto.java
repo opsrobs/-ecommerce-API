@@ -1,6 +1,7 @@
 package com.ecommerce.api.apiecommerce.Dtos;
 
 import com.ecommerce.api.apiecommerce.Models.BairroModels;
+import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
@@ -10,7 +11,7 @@ public class EnderecoDto {
     private String cep;
     @NotNull
     private String rua;
-    @NotNull
+    @Nullable
     private String complemento;
     @NotNull
     private long numero;
