@@ -14,36 +14,63 @@ public class ProductModels {
     @Column( nullable = false)
     private String nomeProduto;
     @Column( nullable = false)
+    private String descProduto;
+    @Column( nullable = true)
+    private String pathImagem;
+    @Column( nullable = true)
+    private String nomeImagem1;
+    @Column( nullable = true)
+    private String nomeImagem2;
+    @Column( nullable = false)
     private float preco_produto;
 
     @JsonIgnore
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private ProductTypeModels categories;
 
-    public ProductModels(long id, String nomeProduto, float preco_produto, ProductTypeModels categories) {
-        this.id = id;
-        this.nomeProduto = nomeProduto;
-        this.preco_produto = preco_produto;
-        this.categories = categories;
-    }
 
     public ProductModels() {
     }
 
-    public long getid() {
+    public ProductModels(long id, String nomeProduto, String descProduto, String pathImagem, float preco_produto, ProductTypeModels categories) {
+        this.id = id;
+        this.nomeProduto = nomeProduto;
+        this.descProduto = descProduto;
+        this.pathImagem = pathImagem;
+        this.preco_produto = preco_produto;
+        this.categories = categories;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getnomeProduto() {
+    public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public void setnomeProduto(String nomeProduto) {
+    public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
+    }
+
+    public String getDescProduto() {
+        return descProduto;
+    }
+
+    public void setDescProduto(String descProduto) {
+        this.descProduto = descProduto;
+    }
+
+    public String getPathImagem() {
+        return pathImagem;
+    }
+
+    public void setPathImagem(String pathImagem) {
+        this.pathImagem = pathImagem;
     }
 
     public float getPreco_produto() {
@@ -62,12 +89,30 @@ public class ProductModels {
         this.categories = categories;
     }
 
+    public String getNomeImagem1() {
+        return nomeImagem1;
+    }
+
+    public void setNomeImagem1(String nomeImagem1) {
+        this.nomeImagem1 = nomeImagem1;
+    }
+
+    public String getNomeImagem2() {
+        return nomeImagem2;
+    }
+
+    public void setNomeImagem2(String nomeImagem2) {
+        this.nomeImagem2 = nomeImagem2;
+    }
+
     @Override
     public String toString() {
         return "ProductModels{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", nomeProduto='" + nomeProduto + '\'' +
-                ", preco_produto='" + preco_produto + '\'' +
+                ", descProduto='" + descProduto + '\'' +
+                ", pathImagem='" + pathImagem + '\'' +
+                ", preco_produto=" + preco_produto +
                 ", categories=" + categories +
                 '}';
     }

@@ -10,25 +10,47 @@ public class ProductDto {
     @NotNull
     private String nomeProduto;
     @NotNull
+    private String descProduto;
+    @NotNull
+    private String pathImagem;
+    @NotNull
     private float preco_produto;
     @NotNull
     private ProductTypeModels categories;
 
-    public ProductDto(String nomeProduto, float preco_produto, ProductTypeModels categories) {
+    public ProductDto() {
+    }
+
+    public ProductDto(String nomeProduto, String descProduto, String pathImagem, float preco_produto, ProductTypeModels categories) {
         this.nomeProduto = nomeProduto;
+        this.descProduto = descProduto;
+        this.pathImagem = pathImagem;
         this.preco_produto = preco_produto;
         this.categories = categories;
     }
 
-    public ProductDto() {
-    }
-
-    public String getnomeProduto() {
+    public String getNomeProduto() {
         return nomeProduto;
     }
 
-    public void setnomeProduto(String nomeProduto) {
+    public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
+    }
+
+    public String getDescProduto() {
+        return descProduto;
+    }
+
+    public void setDescProduto(String descProduto) {
+        this.descProduto = descProduto;
+    }
+
+    public String getPathImagem() {
+        return pathImagem;
+    }
+
+    public void setPathImagem(String pathImagem) {
+        this.pathImagem = pathImagem;
     }
 
     public float getPreco_produto() {
@@ -45,5 +67,16 @@ public class ProductDto {
 
     public void setCategories(ProductTypeModels categories) {
         this.categories = categories;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDto{" +
+                "nomeProduto='" + nomeProduto + '\'' +
+                ", descProduto='" + descProduto + '\'' +
+                ", pathImagem='" + pathImagem + '\'' +
+                ", preco_produto=" + preco_produto +
+                ", categories=" + categories +
+                '}';
     }
 }
