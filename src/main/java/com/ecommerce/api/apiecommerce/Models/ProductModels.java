@@ -15,12 +15,10 @@ public class ProductModels {
     private String nomeProduto;
     @Column( nullable = false)
     private String descProduto;
+    @Column( nullable = false)
+    private String URLImagem;
     @Column( nullable = true)
-    private String pathImagem;
-    @Column( nullable = true)
-    private String nomeImagem1;
-    @Column( nullable = true)
-    private String nomeImagem2;
+    private String imagealt;
     @Column( nullable = false)
     private float preco_produto;
 
@@ -32,11 +30,11 @@ public class ProductModels {
     public ProductModels() {
     }
 
-    public ProductModels(long id, String nomeProduto, String descProduto, String pathImagem, float preco_produto, ProductTypeModels categories) {
+    public ProductModels(long id, String nomeProduto, String descProduto, String URLImagem, float preco_produto, ProductTypeModels categories) {
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.descProduto = descProduto;
-        this.pathImagem = pathImagem;
+        this.URLImagem = URLImagem;
         this.preco_produto = preco_produto;
         this.categories = categories;
     }
@@ -65,12 +63,12 @@ public class ProductModels {
         this.descProduto = descProduto;
     }
 
-    public String getPathImagem() {
-        return pathImagem;
+    public String getURLImagem() {
+        return URLImagem;
     }
 
-    public void setPathImagem(String pathImagem) {
-        this.pathImagem = pathImagem;
+    public void setURLImagem(String URLImagem) {
+        this.URLImagem = URLImagem;
     }
 
     public float getPreco_produto() {
@@ -89,21 +87,14 @@ public class ProductModels {
         this.categories = categories;
     }
 
-    public String getNomeImagem1() {
-        return nomeImagem1;
+    public String getimagealt() {
+        return imagealt;
     }
 
-    public void setNomeImagem1(String nomeImagem1) {
-        this.nomeImagem1 = nomeImagem1;
+    public void setimagealt(String imagealt) {
+        this.imagealt = imagealt;
     }
 
-    public String getNomeImagem2() {
-        return nomeImagem2;
-    }
-
-    public void setNomeImagem2(String nomeImagem2) {
-        this.nomeImagem2 = nomeImagem2;
-    }
 
     @Override
     public String toString() {
@@ -111,7 +102,7 @@ public class ProductModels {
                 "id=" + id +
                 ", nomeProduto='" + nomeProduto + '\'' +
                 ", descProduto='" + descProduto + '\'' +
-                ", pathImagem='" + pathImagem + '\'' +
+                ", URLImagem='" + URLImagem + '\'' +
                 ", preco_produto=" + preco_produto +
                 ", categories=" + categories +
                 '}';

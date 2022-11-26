@@ -12,7 +12,9 @@ public class ProductDto {
     @NotNull
     private String descProduto;
     @NotNull
-    private String pathImagem;
+    private String URLImagem;
+    @NotNull
+    private String imagealt;
     @NotNull
     private float preco_produto;
     @NotNull
@@ -21,10 +23,11 @@ public class ProductDto {
     public ProductDto() {
     }
 
-    public ProductDto(String nomeProduto, String descProduto, String pathImagem, float preco_produto, ProductTypeModels categories) {
+    public ProductDto(String nomeProduto, String descProduto, String URLImagem, String imagealt, float preco_produto, ProductTypeModels categories) {
         this.nomeProduto = nomeProduto;
         this.descProduto = descProduto;
-        this.pathImagem = pathImagem;
+        this.URLImagem = URLImagem;
+        this.imagealt = imagealt;
         this.preco_produto = preco_produto;
         this.categories = categories;
     }
@@ -45,12 +48,12 @@ public class ProductDto {
         this.descProduto = descProduto;
     }
 
-    public String getPathImagem() {
-        return pathImagem;
+    public String getURLImagem() {
+        return URLImagem;
     }
 
-    public void setPathImagem(String pathImagem) {
-        this.pathImagem = pathImagem;
+    public void setURLImagem(String URLImagem) {
+        this.URLImagem = URLImagem;
     }
 
     public float getPreco_produto() {
@@ -69,12 +72,21 @@ public class ProductDto {
         this.categories = categories;
     }
 
+    public String getImagealt() {
+        return imagealt;
+    }
+
+    public void setImagealt(String imagealt) {
+        this.imagealt = imagealt;
+    }
+
     @Override
     public String toString() {
         return "ProductDto{" +
                 "nomeProduto='" + nomeProduto + '\'' +
                 ", descProduto='" + descProduto + '\'' +
-                ", pathImagem='" + pathImagem + '\'' +
+                ", URLImagem='" + URLImagem + '\'' +
+                ", imagealt='" + imagealt + '\'' +
                 ", preco_produto=" + preco_produto +
                 ", categories=" + categories +
                 '}';
