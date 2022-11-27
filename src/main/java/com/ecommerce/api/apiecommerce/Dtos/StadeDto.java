@@ -1,12 +1,15 @@
 package com.ecommerce.api.apiecommerce.Dtos;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 public class StadeDto {
-    @NotNull
+    @Nullable
     private String UF;
     @NotNull
     private String nome_estado;

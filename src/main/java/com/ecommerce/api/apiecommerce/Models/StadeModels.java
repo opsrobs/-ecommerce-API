@@ -10,7 +10,7 @@ public class StadeModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_stade;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String UF;
     @Column(nullable = false)
     private String nome_estado;
