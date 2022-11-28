@@ -13,9 +13,8 @@ repositories {
 }
 
 dependencies {
-	// https://mvnrepository.com/artifact/org.json/json
-	// https://mvnrepository.com/artifact/br.com.uol.pagseguro/pagseguro-api
-	implementation group: 'br.com.uol.pagseguro', name: 'pagseguro-api', version: '4.3.2'
+// https://mvnrepository.com/artifact/com.paypal.sdk/rest-api-sdk
+	implementation group: 'com.paypal.sdk', name: 'rest-api-sdk', version: '1.14.0'
 
 	implementation group: 'org.json', name: 'json', version: '20090211'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
