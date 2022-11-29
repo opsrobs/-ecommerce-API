@@ -18,26 +18,21 @@ public class PessoaModels implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long userID;
-    //
     @Column(nullable = false)
     private String nome;
     @Column(nullable = false)
     private String cpf_cnpj;
     @Column(nullable = false)
     private Date data_nasc;
-
-    //
     @Column(nullable = false, unique = true)
     private String userName;
     @Column(nullable = false)
     private String password;
-
     @ManyToMany
     @JoinTable(name = "TB_USERS_ROLES",
     joinColumns = @JoinColumn(name= "user_id"),
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
-
     @OneToOne(mappedBy = "pessoa")
     private ClienteModels cliente;
 
