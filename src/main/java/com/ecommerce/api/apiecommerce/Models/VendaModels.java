@@ -12,7 +12,7 @@ public class VendaModels {
     private String codigoRastreio;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "numeroPedido")
+    @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "paypalOrderId")
     private PedidoModels pedido;
 
     public VendaModels(long id_venda, PedidoModels pedido) {

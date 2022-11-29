@@ -10,7 +10,7 @@ import java.util.Date;
 public class PedidoModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long numeroPedido;
+    private long paypalOrderId;
     @Column(nullable = false)
     private Date data_pedido;
     @Column(nullable = false)
@@ -35,8 +35,8 @@ public class PedidoModels {
     private ClienteModels cliente;
 
 
-    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
-        this.numeroPedido = numeroPedido;
+    public PedidoModels(long paypalOrderId, Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
+        this.paypalOrderId = paypalOrderId;
         this.data_pedido = data_pedido;
         this.valor = valor;
         this.paypal_order_status = paypal_order_status;
@@ -49,8 +49,8 @@ public class PedidoModels {
         this.cliente = cliente;
     }
 
-    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
-        this.numeroPedido = numeroPedido;
+    public PedidoModels(long paypalOrderId, Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
+        this.paypalOrderId = paypalOrderId;
         this.data_pedido = data_pedido;
         this.valor = valor;         //sem recebedor
         this.paypal_order_status = paypal_order_status;
@@ -82,12 +82,12 @@ public class PedidoModels {
     }
 
 
-    public long getNumeroPedido() {
-        return numeroPedido;
+    public long getpaypalOrderId() {
+        return paypalOrderId;
     }
 
-    public void setNumeroPedido(long numeroPedido) {
-        this.numeroPedido = numeroPedido;
+    public void setpaypalOrderId(long paypalOrderId) {
+        this.paypalOrderId = paypalOrderId;
     }
 
     public String getPaypal_order_status() {

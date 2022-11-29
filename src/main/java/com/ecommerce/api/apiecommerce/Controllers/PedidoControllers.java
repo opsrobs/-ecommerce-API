@@ -46,7 +46,7 @@ public class PedidoControllers {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PedidoModels>> getAllPedido(@PageableDefault(page = 0, size = 10, sort = "numeroPedido", direction = Sort.Direction.ASC) Pageable pageable){
+    public ResponseEntity<Page<PedidoModels>> getAllPedido(@PageableDefault(page = 0, size = 10, sort = "paypalOrderId", direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(pedidoServices.findAll(pageable));
     }
 }

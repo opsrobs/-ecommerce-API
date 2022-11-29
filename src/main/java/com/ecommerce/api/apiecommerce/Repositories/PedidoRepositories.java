@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PedidoRepositories extends JpaRepository<PedidoModels, Long> {
 
+    PedidoModels findByPaypalOrderId(String paypalOrderId);
+
 }
