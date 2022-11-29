@@ -153,4 +153,27 @@ public class PedidoModels {
     public void setCliente(ClienteModels cliente) {
         this.cliente = cliente;
     }
+
+    public void setPaypalOrderId(String id) {
+    }
+
+    public void setPaypalOrderStatus(String toString) {
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoModels{" +
+                "paypalOrderId=" + paypalOrderId +
+                ", data_pedido=" + data_pedido +
+                ", valor=" + valor +
+                ", paypal_order_status='" + paypal_order_status + '\'' +
+                ", valor_total=" + valor_total +
+                ", valor_frete=" + valor_frete +
+                ", data_entrega=" + data_entrega +
+                ", peso_pedido=" + peso_pedido +
+                ", nomeRecebedor='" + nomeRecebedor + '\'' +
+                ", endereco=" + endereco +
+                ", cliente=" + cliente +
+                '}';
+    }
 }
