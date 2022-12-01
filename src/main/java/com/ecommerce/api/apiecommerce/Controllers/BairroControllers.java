@@ -49,11 +49,6 @@ public class BairroControllers {
         System.err.println(optionalBairroModels.get().getEndereco());
         return ResponseEntity.status(HttpStatus.OK).body(optionalBairroModels.get());
     }
-
-
-
-
-
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<Page<BairroModels>> getAllCategories(@PageableDefault(

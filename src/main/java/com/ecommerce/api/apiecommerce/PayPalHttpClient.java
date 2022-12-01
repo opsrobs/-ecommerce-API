@@ -1,6 +1,7 @@
 package com.ecommerce.api.apiecommerce;
 
 import com.ecommerce.api.apiecommerce.Dtos.PedidoDto;
+import com.ecommerce.api.apiecommerce.Dtos.VendaDto;
 import com.ecommerce.api.apiecommerce.PaypalSandBox.AccessTokenResponseDTO;
 import com.ecommerce.api.apiecommerce.PaypalSandBox.ClientTokenDTO;
 import com.ecommerce.api.apiecommerce.PaypalSandBox.OrderResponseDTO;
@@ -63,9 +64,9 @@ public class PayPalHttpClient {
         return objectMapper.readValue(content, ClientTokenDTO.class);
     }
 
-    public OrderResponseDTO createOrder(PedidoDto pedidoDto) throws Exception {
+    public OrderResponseDTO createOrder(VendaDto vendaDto) throws Exception {
         var accessTokenDto = getAccessToken();
-        var payload = objectMapper.writeValueAsString(pedidoDto);
+        var payload = objectMapper.writeValueAsString(vendaDto);
 
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(createUrl(paypalConfig.getBaseUrl(), ORDER_CHECKOUT)))

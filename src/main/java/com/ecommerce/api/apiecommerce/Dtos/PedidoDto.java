@@ -2,26 +2,18 @@ package com.ecommerce.api.apiecommerce.Dtos;
 
 import com.ecommerce.api.apiecommerce.Models.ClienteModels;
 import com.ecommerce.api.apiecommerce.Models.EnderecoModels;
-import com.ecommerce.api.apiecommerce.PaypalSandBox.OrderIntent;
-import com.ecommerce.api.apiecommerce.PaypalSandBox.PayPalAppContextDTO;
-import com.ecommerce.api.apiecommerce.PaypalSandBox.PurchaseUnit;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
-@Data
+
 public class PedidoDto {
-
-
     @NotNull
     private Date data_pedido;
     @NotNull
     private Float valor;
     @NotNull
-    private String paypal_order_status;
+    private String status;
     @NotNull
     private Float valor_total;
     @NotNull
@@ -36,45 +28,11 @@ public class PedidoDto {
     private EnderecoModels endereco;
     @NotNull
     private ClienteModels cliente;
-    private OrderIntent intent;
-    @JsonProperty("purchase_units")
-    private List<PurchaseUnit> purchaseUnits;
-    @JsonProperty("application_context")
-    private PayPalAppContextDTO applicationContext;
 
-
-    public PedidoDto(Date data_pedido,
-                     Float valor,
-                     String paypal_order_status,
-                     Float valor_total,
-                     Float valor_frete,
-                     Date data_entrega,
-                     Float peso_pedido,
-                     @Nullable String nomeRecebedor,
-                     EnderecoModels endereco,
-                     ClienteModels cliente,
-                     OrderIntent intent,
-                     List<PurchaseUnit> purchaseUnits,
-                     PayPalAppContextDTO applicationContext) {
+    public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
         this.data_pedido = data_pedido;
         this.valor = valor;
-        this.paypal_order_status = paypal_order_status;
-        this.valor_total = valor_total;
-        this.valor_frete = valor_frete;
-        this.data_entrega = data_entrega;
-        this.peso_pedido = peso_pedido;
-        this.nomeRecebedor = nomeRecebedor;
-        this.endereco = endereco;
-        this.cliente = cliente;
-        this.intent = intent;
-        this.purchaseUnits = purchaseUnits;
-        this.applicationContext = applicationContext;
-    }
-
-    public PedidoDto(Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
-        this.data_pedido = data_pedido;
-        this.valor = valor;
-        this.paypal_order_status = paypal_order_status;
+        this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
@@ -84,10 +42,10 @@ public class PedidoDto {
         this.cliente = cliente;
     }
 
-    public PedidoDto(Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
+    public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
         this.data_pedido = data_pedido;
         this.valor = valor;
-        this.paypal_order_status = paypal_order_status;
+        this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete; //sem recebedor
         this.data_entrega = data_entrega;
@@ -115,36 +73,12 @@ public class PedidoDto {
         this.valor = valor;
     }
 
-    public String getPaypal_order_status() {
-        return paypal_order_status;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPaypal_order_status(String paypal_order_status) {
-        this.paypal_order_status = paypal_order_status;
-    }
-
-    public OrderIntent getIntent() {
-        return intent;
-    }
-
-    public void setIntent(OrderIntent intent) {
-        this.intent = intent;
-    }
-
-    public List<PurchaseUnit> getPurchaseUnits() {
-        return purchaseUnits;
-    }
-
-    public void setPurchaseUnits(List<PurchaseUnit> purchaseUnits) {
-        this.purchaseUnits = purchaseUnits;
-    }
-
-    public PayPalAppContextDTO getApplicationContext() {
-        return applicationContext;
-    }
-
-    public void setApplicationContext(PayPalAppContextDTO applicationContext) {
-        this.applicationContext = applicationContext;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Float getValor_total() {
@@ -201,24 +135,5 @@ public class PedidoDto {
 
     public void setCliente(ClienteModels cliente) {
         this.cliente = cliente;
-    }
-
-    @Override
-    public String toString() {
-        return "PedidoDto{" +
-                "data_pedido=" + data_pedido +
-                ", valor=" + valor +
-                ", paypal_order_status='" + paypal_order_status + '\'' +
-                ", valor_total=" + valor_total +
-                ", valor_frete=" + valor_frete +
-                ", data_entrega=" + data_entrega +
-                ", peso_pedido=" + peso_pedido +
-                ", nomeRecebedor='" + nomeRecebedor + '\'' +
-                ", endereco=" + endereco +
-                ", cliente=" + cliente +
-                ", intent=" + intent +
-                ", purchaseUnits=" + purchaseUnits +
-                ", applicationContext=" + applicationContext +
-                '}';
     }
 }

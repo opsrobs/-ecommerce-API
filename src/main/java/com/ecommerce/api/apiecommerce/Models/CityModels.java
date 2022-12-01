@@ -10,7 +10,7 @@ import java.util.List;
 public class CityModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_city;
+    private long idCidade;
     @Column(nullable = false)
     private String nome_city;
     @OneToMany(mappedBy = "city", fetch = FetchType.EAGER)
@@ -18,8 +18,8 @@ public class CityModels {
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private StadeModels stade;
 
-    public CityModels(long id_city, String nome_city, StadeModels stade) {
-        this.id_city = id_city;
+    public CityModels(long idCidade, String nome_city, StadeModels stade) {
+        this.idCidade = idCidade;
         this.nome_city = nome_city;
         this.stade = stade;
     }
@@ -27,12 +27,12 @@ public class CityModels {
     public CityModels() {
     }
 
-    public long getId_city() {
-        return id_city;
+    public long getidCidade() {
+        return idCidade;
     }
 
-    public void setId_city(long id_city) {
-        this.id_city = id_city;
+    public void setidCidade(long idCidade) {
+        this.idCidade = idCidade;
     }
 
     public String getNome_city() {
@@ -54,7 +54,7 @@ public class CityModels {
     @Override
     public String toString() {
         return "CityModels{" +
-                "id_city=" + id_city +
+                "idCidade=" + idCidade +
                 ", nome_city='" + nome_city + '\'' +
                 ", bairro=" + bairro +
                 ", stade=" + stade +

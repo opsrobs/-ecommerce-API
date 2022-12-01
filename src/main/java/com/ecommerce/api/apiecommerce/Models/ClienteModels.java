@@ -9,26 +9,25 @@ import javax.persistence.*;
 public class ClienteModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_cliente;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
+    private long idCliente;
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "pessoa_id", referencedColumnName = "userID")
     private PessoaModels pessoa;
 
-    public ClienteModels(long id_cliente, PessoaModels pessoa) {
-        this.id_cliente = id_cliente;
+    public ClienteModels(long idCliente, PessoaModels pessoa) {
+        this.idCliente = idCliente;
         this.pessoa = pessoa;
     }
 
     public ClienteModels() {
     }
 
-    public long getId_cliente() {
-        return id_cliente;
+    public long getidCliente() {
+        return idCliente;
     }
 
-    public void setId_cliente(long id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setidCliente(long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public PessoaModels getPessoa() {
@@ -37,5 +36,13 @@ public class ClienteModels {
 
     public void setPessoa(PessoaModels pessoa) {
         this.pessoa = pessoa;
+    }
+
+    @Override
+    public String toString() {
+        return "ClienteModels{" +
+                "idCliente=" + idCliente +
+                ", pessoa=" + pessoa +
+                '}';
     }
 }
