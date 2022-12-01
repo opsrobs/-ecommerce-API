@@ -19,6 +19,7 @@ bin/
 
 ### IntelliJ IDEA ###
 .idea
+src/main/java/com/ecommerce/api/apiecommerce/Payments/Credentials.java
 *.iws
 *.iml
 *.ipr

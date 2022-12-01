@@ -19,7 +19,7 @@ public class EnderecoModels {
     private String cep;
     @Column(nullable = false)
     private String rua;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String complemento;
     @Column(nullable = false)
     private long numero;

@@ -14,6 +14,12 @@ public class ProductModels {
     @Column( nullable = false)
     private String nomeProduto;
     @Column( nullable = false)
+    private String descProduto;
+    @Column( nullable = false)
+    private String URLImagem;
+    @Column( nullable = true)
+    private String imagealt;
+    @Column( nullable = false)
     private float preco_produto;
 
     @Column (nullable = false)
@@ -22,7 +28,6 @@ public class ProductModels {
     @JsonIgnore
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private ProductTypeModels categories;
-
     public ProductModels(long id, String nomeProduto, float preco_produto, String imagePath, ProductTypeModels categories) {
         this.id = id;
         this.nomeProduto = nomeProduto;
@@ -30,17 +35,16 @@ public class ProductModels {
         this.imagePath = imagePath;
         this.categories = categories;
     }
-
-    public ProductModels(long id, String nomeProduto, float preco_produto, ProductTypeModels categories) {
+    public ProductModels() {
+    }
+    public ProductModels(long id, String nomeProduto, String descProduto, String URLImagem, float preco_produto, ProductTypeModels categories) {
         this.id = id;
         this.nomeProduto = nomeProduto;
+        this.descProduto = descProduto;
+        this.URLImagem = URLImagem;
         this.preco_produto = preco_produto;
         this.categories = categories;
     }
-
-    public ProductModels() {
-    }
-
     public long getId() {
         return id;
     }
@@ -55,6 +59,22 @@ public class ProductModels {
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
+    }
+
+    public String getDescProduto() {
+        return descProduto;
+    }
+
+    public void setDescProduto(String descProduto) {
+        this.descProduto = descProduto;
+    }
+
+    public String getURLImagem() {
+        return URLImagem;
+    }
+
+    public void setURLImagem(String URLImagem) {
+        this.URLImagem = URLImagem;
     }
 
     public float getPreco_produto() {
@@ -81,13 +101,23 @@ public class ProductModels {
         this.categories = categories;
     }
 
+    public String getimagealt() {
+        return imagealt;
+    }
+
+    public void setimagealt(String imagealt) {
+        this.imagealt = imagealt;
+    }
+
+
     @Override
     public String toString() {
         return "ProductModels{" +
                 "id=" + id +
                 ", nomeProduto='" + nomeProduto + '\'' +
+                ", descProduto='" + descProduto + '\'' +
+                ", URLImagem='" + URLImagem + '\'' +
                 ", preco_produto=" + preco_produto +
-                ", imagePath='" + imagePath + '\'' +
                 ", categories=" + categories +
                 '}';
     }

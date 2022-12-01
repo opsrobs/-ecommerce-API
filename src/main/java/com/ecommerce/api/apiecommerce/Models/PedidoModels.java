@@ -25,7 +25,7 @@ public class PedidoModels {
     private Date data_entrega;
     @Column(nullable = false)
     private Float peso_pedido;
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String nomeRecebedor;       //talvez seja interessante remover
 
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
@@ -45,6 +45,19 @@ public class PedidoModels {
         this.data_entrega = data_entrega;
         this.peso_pedido = peso_pedido;
         this.nomeRecebedor = nomeRecebedor;
+        this.endereco = endereco;
+        this.cliente = cliente;
+    }
+
+    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
+        this.numeroPedido = numeroPedido;
+        this.data_pedido = data_pedido;
+        this.valor = valor;         //sem recebedor
+        this.status = status;
+        this.valor_total = valor_total;
+        this.valor_frete = valor_frete;
+        this.data_entrega = data_entrega;
+        this.peso_pedido = peso_pedido;
         this.endereco = endereco;
         this.cliente = cliente;
     }

@@ -8,8 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +20,7 @@ import java.util.Optional;
 @RequestMapping("/api/user-products")
 public class ProductControllers {
 
+    private static String caminhoImagens = "C:\\projetos\\ecommerce\\imagens";
     final ProductServices productServices;
 
     public ProductControllers(ProductServices productServices) {
@@ -29,10 +29,11 @@ public class ProductControllers {
 
     @PostMapping
     public ResponseEntity<Object> saveProducts(@RequestBody @Valid ProductDto productDto){
-        if (productServices.existsByNomeTipo(productDto.getnomeProduto())){
+        if (productServices.existsByNomeTipo(productDto.getNomeProduto())) {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("Conflict: This product already been created!");
         }
+
         var productModels = new ProductModels();
         BeanUtils.copyProperties(productDto,productModels);
         System.err.println(productDto +"\n" + productModels);

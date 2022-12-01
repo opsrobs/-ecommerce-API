@@ -2,6 +2,8 @@ package com.ecommerce.api.apiecommerce.Dtos;
 
 import com.ecommerce.api.apiecommerce.Models.ClienteModels;
 import com.ecommerce.api.apiecommerce.Models.EnderecoModels;
+import org.springframework.lang.Nullable;
+
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -20,7 +22,7 @@ public class PedidoDto {
     private Date data_entrega;
     @NotNull
     private Float peso_pedido;
-    @NotNull
+    @Nullable
     private String nomeRecebedor;
     @NotNull
     private EnderecoModels endereco;
@@ -36,6 +38,18 @@ public class PedidoDto {
         this.data_entrega = data_entrega;
         this.peso_pedido = peso_pedido;
         this.nomeRecebedor = nomeRecebedor;
+        this.endereco = endereco;
+        this.cliente = cliente;
+    }
+
+    public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
+        this.data_pedido = data_pedido;
+        this.valor = valor;
+        this.status = status;
+        this.valor_total = valor_total;
+        this.valor_frete = valor_frete; //sem recebedor
+        this.data_entrega = data_entrega;
+        this.peso_pedido = peso_pedido;
         this.endereco = endereco;
         this.cliente = cliente;
     }
