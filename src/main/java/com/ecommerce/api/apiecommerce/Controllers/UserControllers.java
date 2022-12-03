@@ -4,6 +4,7 @@ import com.ecommerce.api.apiecommerce.Dtos.UserContatoDto;
 import com.ecommerce.api.apiecommerce.Dtos.PessoaDto;
 import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
 import com.ecommerce.api.apiecommerce.Models.PessoaModels;
+import com.ecommerce.api.apiecommerce.Services.ServiceUtils;
 import com.ecommerce.api.apiecommerce.Services.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -30,6 +31,7 @@ public class UserControllers {
         this.userService = userService;
     }
 
+    ServiceUtils serviceUtils = new ServiceUtils();
 
     @PostMapping("/new-user")
     public ResponseEntity<Object> saveUsers(@RequestBody @Valid PessoaDto PessoaDto){
@@ -39,6 +41,7 @@ public class UserControllers {
         }
         var PessoaModels = new PessoaModels();
         BeanUtils.copyProperties(PessoaDto,PessoaModels);
+//        PessoaModels.setData_nasc(serviceUtils.strToDate(PessoaDto.getData_nasc().toString()));
         System.err.println(PessoaDto +"\n" + PessoaModels);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.save(PessoaModels));
