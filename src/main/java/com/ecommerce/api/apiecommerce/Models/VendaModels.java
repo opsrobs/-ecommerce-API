@@ -11,14 +11,16 @@ public class VendaModels {
     @Column(nullable = true)
     private String codigoRastreio;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "paypal_order_id")
+    private String paypalOrderId;
+    @Column(name = "paypal_order_status")
+    private String paypalOrderStatus;
+
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "numeroPedido")
     private PedidoModels pedido;
 
-    public VendaModels(long id_venda, PedidoModels pedido) {
-        this.id_venda = id_venda;
-        this.pedido = pedido;
-    }
+
 
     public VendaModels(long id_venda, String codigoRastreio, PedidoModels pedido) {
         this.id_venda = id_venda;
@@ -51,5 +53,32 @@ public class VendaModels {
 
     public void setCodigoRastreio(String codigoRastreio) {
         this.codigoRastreio = codigoRastreio;
+    }
+
+    public String getPaypalOrderId() {
+        return paypalOrderId;
+    }
+
+    public void setPaypalOrderId(String paypalOrderId) {
+        this.paypalOrderId = paypalOrderId;
+    }
+
+    public String getPaypalOrderStatus() {
+        return paypalOrderStatus;
+    }
+
+    public void setPaypalOrderStatus(String paypalOrderStatus) {
+        this.paypalOrderStatus = paypalOrderStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "VendaModels{" +
+                "id_venda=" + id_venda +
+                ", codigoRastreio='" + codigoRastreio + '\'' +
+                ", paypalOrderId='" + paypalOrderId + '\'' +
+                ", paypalOrderStatus='" + paypalOrderStatus + '\'' +
+                ", pedido=" + pedido +
+                '}';
     }
 }

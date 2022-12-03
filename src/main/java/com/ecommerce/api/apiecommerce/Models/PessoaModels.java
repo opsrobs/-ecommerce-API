@@ -1,5 +1,6 @@
 package com.ecommerce.api.apiecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,6 +35,7 @@ public class PessoaModels implements UserDetails, Serializable {
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
     @OneToOne(mappedBy = "pessoa")
+    @JsonIgnore
     private ClienteModels cliente;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // OneToMany associate aos contacts
@@ -54,7 +56,7 @@ public class PessoaModels implements UserDetails, Serializable {
         this.userName = userName;
         this.password = password;
         this.roles = roles;
-        this.cliente = cliente;
+//        this.cliente = cliente;
         this.contatos = contatos;
         this.emails = emails;
     }
@@ -179,13 +181,13 @@ public class PessoaModels implements UserDetails, Serializable {
         this.data_nasc = data_nasc;
     }
 
-    public ClienteModels getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(ClienteModels cliente) {
-        this.cliente = cliente;
-    }
+//    public ClienteModels getCliente() {
+//        return cliente;
+//    }
+//
+//    public void setCliente(ClienteModels cliente) {
+//        this.cliente = cliente;
+//    }
 
     @Override
     public String toString() {
@@ -197,7 +199,7 @@ public class PessoaModels implements UserDetails, Serializable {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
-                ", cliente=" + cliente +
+//                ", cliente=" + cliente +
                 ", contatos=" + contatos +
                 ", emails=" + emails +
                 '}';

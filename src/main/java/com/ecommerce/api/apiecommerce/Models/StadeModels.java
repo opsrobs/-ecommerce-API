@@ -9,7 +9,7 @@ public class StadeModels {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id_stade;
+    private long idEstado;
     @Column(nullable = true)
     private String UF;
     @Column(nullable = false)
@@ -17,8 +17,8 @@ public class StadeModels {
     @OneToMany(mappedBy = "stade", fetch = FetchType.EAGER)
     private List<CityModels> city;
 
-    public StadeModels(long id_stade, String UF, String nome_estado) {
-        this.id_stade = id_stade;
+    public StadeModels(long idEstado, String UF, String nome_estado) {
+        this.idEstado = idEstado;
         this.UF = UF;
         this.nome_estado = nome_estado;
     }
@@ -26,12 +26,12 @@ public class StadeModels {
     public StadeModels() {
     }
 
-    public long getId_stade() {
-        return id_stade;
+    public long getidEstado() {
+        return idEstado;
     }
 
-    public void setId_stade(long id_stade) {
-        this.id_stade = id_stade;
+    public void setidEstado(long idEstado) {
+        this.idEstado = idEstado;
     }
 
     public String getUF() {
@@ -53,7 +53,7 @@ public class StadeModels {
     @Override
     public String toString() {
         return "StadeModels{" +
-                "id_stade=" + id_stade +
+                "idEstado=" + idEstado +
                 ", UF='" + UF + '\'' +
                 ", nome_estado='" + nome_estado + '\'' +
                 '}';
