@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PedidoRepositories extends JpaRepository<PedidoModels, Long> {
+public interface PedidoRepositories extends  JpaRepository<PedidoModels, Long> {
+
+    PedidoModels findByPaypalOrderId(String paypalOrderId);
 
 }

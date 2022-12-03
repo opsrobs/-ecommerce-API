@@ -1,5 +1,7 @@
 package com.ecommerce.api.apiecommerce.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,7 @@ public class ClienteModels {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id_cliente;
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name = "pessoa_id", referencedColumnName = "userID")
     private PessoaModels pessoa;
 

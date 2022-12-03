@@ -10,13 +10,13 @@ import java.util.Date;
 public class PedidoModels {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long numeroPedido;
+    private long paypalOrderId;
     @Column(nullable = false)
     private Date data_pedido;
     @Column(nullable = false)
     private Float valor;
     @Column(nullable = false)
-    private String status;
+    private String paypal_order_status;
     @Column(nullable = false)
     private Float valor_total;
     @Column(nullable = false)
@@ -35,11 +35,11 @@ public class PedidoModels {
     private ClienteModels cliente;
 
 
-    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
-        this.numeroPedido = numeroPedido;
+    public PedidoModels(long paypalOrderId, Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
+        this.paypalOrderId = paypalOrderId;
         this.data_pedido = data_pedido;
         this.valor = valor;
-        this.status = status;
+        this.paypal_order_status = paypal_order_status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
@@ -49,11 +49,11 @@ public class PedidoModels {
         this.cliente = cliente;
     }
 
-    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
-        this.numeroPedido = numeroPedido;
+    public PedidoModels(long paypalOrderId, Date data_pedido, Float valor, String paypal_order_status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
+        this.paypalOrderId = paypalOrderId;
         this.data_pedido = data_pedido;
         this.valor = valor;         //sem recebedor
-        this.status = status;
+        this.paypal_order_status = paypal_order_status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
@@ -63,14 +63,6 @@ public class PedidoModels {
     }
 
     public PedidoModels() {
-    }
-
-    public long getnumeroPedido() {
-        return numeroPedido;
-    }
-
-    public void setnumeroPedido(long numeroPedido) {
-        this.numeroPedido = numeroPedido;
     }
 
     public Date getData_pedido() {
@@ -89,12 +81,21 @@ public class PedidoModels {
         this.valor = valor;
     }
 
-    public String getStatus() {
-        return status;
+
+    public long getpaypalOrderId() {
+        return paypalOrderId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setpaypalOrderId(long paypalOrderId) {
+        this.paypalOrderId = paypalOrderId;
+    }
+
+    public String getPaypal_order_status() {
+        return paypal_order_status;
+    }
+
+    public void setPaypal_order_status(String paypal_order_status) {
+        this.paypal_order_status = paypal_order_status;
     }
 
     public Float getValor_total() {
@@ -151,5 +152,28 @@ public class PedidoModels {
 
     public void setCliente(ClienteModels cliente) {
         this.cliente = cliente;
+    }
+
+    public void setPaypalOrderId(String id) {
+    }
+
+    public void setPaypalOrderStatus(String toString) {
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoModels{" +
+                "paypalOrderId=" + paypalOrderId +
+                ", data_pedido=" + data_pedido +
+                ", valor=" + valor +
+                ", paypal_order_status='" + paypal_order_status + '\'' +
+                ", valor_total=" + valor_total +
+                ", valor_frete=" + valor_frete +
+                ", data_entrega=" + data_entrega +
+                ", peso_pedido=" + peso_pedido +
+                ", nomeRecebedor='" + nomeRecebedor + '\'' +
+                ", endereco=" + endereco +
+                ", cliente=" + cliente +
+                '}';
     }
 }
