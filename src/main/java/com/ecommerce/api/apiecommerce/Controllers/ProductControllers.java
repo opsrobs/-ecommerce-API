@@ -40,7 +40,7 @@ public class ProductControllers {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(productServices.save(productModels));
     }
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<Page<ProductModels>> getAllProducts(@PageableDefault(
             page = 0,size = 10,sort = "id",direction = Sort.Direction.ASC) Pageable pageable){
