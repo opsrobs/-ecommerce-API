@@ -14,7 +14,7 @@ public class PedidoModels {
     @Column(nullable = false)
     private Date data_pedido;
     @Column(nullable = false)
-    private Float valor;
+    private Float valor; //cai fora
     @Column(nullable = false)
     private String paypal_order_status;
     @Column(nullable = false)
@@ -23,8 +23,10 @@ public class PedidoModels {
     private Float valor_frete;
     @Column(nullable = true)
     private Date data_entrega;
+
+    //inserir array de produto pois não somos bruxos pra adivinhar os produtos do pedido
     @Column(nullable = false)
-    private Float peso_pedido;
+    private Float peso_pedido; //cai fora
     @Column(nullable = true)
     private String nomeRecebedor;       //talvez seja interessante remover
 
