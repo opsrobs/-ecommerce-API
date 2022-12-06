@@ -29,6 +29,9 @@ public class ProductDto {
         this.categories = categories;
     }
 
+    public ProductDto() {
+    }
+
     public String getNomeProduto() {
         return nomeProduto;
     }
