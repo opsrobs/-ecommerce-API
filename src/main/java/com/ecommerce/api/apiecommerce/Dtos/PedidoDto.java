@@ -2,28 +2,27 @@ package com.ecommerce.api.apiecommerce.Dtos;
 
 import com.ecommerce.api.apiecommerce.Models.ClienteModels;
 import com.ecommerce.api.apiecommerce.Models.EnderecoModels;
+import com.ecommerce.api.apiecommerce.Models.ProductModels;
 import org.springframework.lang.Nullable;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 public class PedidoDto {
     @NotNull
     private Date data_pedido;
-    @NotNull
-    private Float valor;
     @NotNull
     private String status;
     @NotNull
     private Float valor_total;
     @NotNull
     private Float valor_frete;
-    @NotNull
+
     private Date data_entrega;
+
     @NotNull
-    private Float peso_pedido;
-    @Nullable
-    private String nomeRecebedor;
+    private List<ProductModels> produtos;
     @NotNull
     private EnderecoModels endereco;
     @NotNull
@@ -31,25 +30,31 @@ public class PedidoDto {
 
     public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
         this.data_pedido = data_pedido;
-        this.valor = valor;
         this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
-        this.peso_pedido = peso_pedido;
-        this.nomeRecebedor = nomeRecebedor;
         this.endereco = endereco;
         this.cliente = cliente;
     }
 
-    public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
+    public PedidoDto(Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, List<ProductModels> produtos, EnderecoModels endereco, ClienteModels cliente) {
         this.data_pedido = data_pedido;
-        this.valor = valor;
+        this.status = status;
+        this.valor_total = valor_total;
+        this.valor_frete = valor_frete;
+        this.data_entrega = data_entrega;
+        this.produtos = produtos;
+        this.endereco = endereco;
+        this.cliente = cliente;
+    }
+
+    public PedidoDto(Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, EnderecoModels endereco, ClienteModels cliente) {
+        this.data_pedido = data_pedido;
         this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete; //sem recebedor
         this.data_entrega = data_entrega;
-        this.peso_pedido = peso_pedido;
         this.endereco = endereco;
         this.cliente = cliente;
     }
@@ -65,13 +70,6 @@ public class PedidoDto {
         this.data_pedido = data_pedido;
     }
 
-    public Float getValor() {
-        return valor;
-    }
-
-    public void setValor(Float valor) {
-        this.valor = valor;
-    }
 
     public String getStatus() {
         return status;
@@ -105,20 +103,12 @@ public class PedidoDto {
         this.data_entrega = data_entrega;
     }
 
-    public Float getPeso_pedido() {
-        return peso_pedido;
+    public List<ProductModels> getProdutos() {
+        return produtos;
     }
 
-    public void setPeso_pedido(Float peso_pedido) {
-        this.peso_pedido = peso_pedido;
-    }
-
-    public String getNomeRecebedor() {
-        return nomeRecebedor;
-    }
-
-    public void setNomeRecebedor(String nomeRecebedor) {
-        this.nomeRecebedor = nomeRecebedor;
+    public void setProdutos(List<ProductModels> produtos) {
+        this.produtos = produtos;
     }
 
     public EnderecoModels getEndereco() {

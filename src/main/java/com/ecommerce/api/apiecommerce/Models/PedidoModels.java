@@ -1,9 +1,12 @@
 package com.ecommerce.api.apiecommerce.Models;
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name= "Pedido")
@@ -14,8 +17,6 @@ public class PedidoModels {
     @Column(nullable = false)
     private Date data_pedido;
     @Column(nullable = false)
-    private Float valor; //cai fora
-    @Column(nullable = false)
     private String status;
     @Column(nullable = false)
     private Float valor_total;
@@ -24,12 +25,9 @@ public class PedidoModels {
     @Column(nullable = true)
     private Date data_entrega;
 
-    //inserir array de produto pois não somos bruxos pra adivinhar os produtos do pedido
-    @Column(nullable = false)
-    private Float peso_pedido; //cai fora
-    @Column(nullable = true)
-    private String nomeRecebedor;       //talvez seja interessante remover
-
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER) // OneToMany associate aos contacts
+    @Fetch(FetchMode.SUBSELECT)
+    private List<ProductModels> produtos;
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private EnderecoModels endereco;
 
@@ -37,29 +35,25 @@ public class PedidoModels {
     private ClienteModels cliente;
 
 
-    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
+    public PedidoModels(long numeroPedido, Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, EnderecoModels endereco, ClienteModels cliente) {
         this.numeroPedido = numeroPedido;
         this.data_pedido = data_pedido;
-        this.valor = valor;
         this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
-        this.peso_pedido = peso_pedido;
-        this.nomeRecebedor = nomeRecebedor;
         this.endereco = endereco;
         this.cliente = cliente;
     }
 
-    public PedidoModels(long numeroPedido, Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, EnderecoModels endereco, ClienteModels cliente) {
+    public PedidoModels(long numeroPedido, Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, List<ProductModels> produtos, EnderecoModels endereco, ClienteModels cliente) {
         this.numeroPedido = numeroPedido;
         this.data_pedido = data_pedido;
-        this.valor = valor;         //sem recebedor
         this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
-        this.peso_pedido = peso_pedido;
+        this.produtos = produtos;
         this.endereco = endereco;
         this.cliente = cliente;
     }
@@ -67,13 +61,6 @@ public class PedidoModels {
     public PedidoModels() {
     }
 
-    public long getnumeroPedido() {
-        return numeroPedido;
-    }
-
-    public void setnumeroPedido(long numeroPedido) {
-        this.numeroPedido = numeroPedido;
-    }
 
     public Date getData_pedido() {
         return data_pedido;
@@ -83,13 +70,6 @@ public class PedidoModels {
         this.data_pedido = data_pedido;
     }
 
-    public Float getValor() {
-        return valor;
-    }
-
-    public void setValor(Float valor) {
-        this.valor = valor;
-    }
 
     public String getStatus() {
         return status;
@@ -123,20 +103,20 @@ public class PedidoModels {
         this.data_entrega = data_entrega;
     }
 
-    public Float getPeso_pedido() {
-        return peso_pedido;
+    public long getNumeroPedido() {
+        return numeroPedido;
     }
 
-    public void setPeso_pedido(Float peso_pedido) {
-        this.peso_pedido = peso_pedido;
+    public void setNumeroPedido(long numeroPedido) {
+        this.numeroPedido = numeroPedido;
     }
 
-    public String getNomeRecebedor() {
-        return nomeRecebedor;
+    public List<ProductModels> getProdutos() {
+        return produtos;
     }
 
-    public void setNomeRecebedor(String nomeRecebedor) {
-        this.nomeRecebedor = nomeRecebedor;
+    public void setProdutos(List<ProductModels> produtos) {
+        this.produtos = produtos;
     }
 
     public EnderecoModels getEndereco() {

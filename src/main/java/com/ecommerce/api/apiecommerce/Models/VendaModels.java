@@ -15,17 +15,17 @@ public class VendaModels {
     private String paypalOrderId;
     @Column(name = "paypal_order_status")
     private String paypalOrderStatus;
-
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "numeroPedido")
-    private PedidoModels pedido;
+//
+//    @OneToOne(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name = "pedido_numero_pedido", referencedColumnName = "numeroPedido")
+//    private PedidoModels pedido;
 
 
 
     public VendaModels(long id_venda, String codigoRastreio, PedidoModels pedido) {
         this.id_venda = id_venda;
         this.codigoRastreio = codigoRastreio;
-        this.pedido = pedido;
+//        this.pedido = pedido;
     }
 
     public VendaModels() {
@@ -39,13 +39,13 @@ public class VendaModels {
         this.id_venda = id_venda;
     }
 
-    public PedidoModels getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(PedidoModels pedido) {
-        this.pedido = pedido;
-    }
+//    public PedidoModels getPedido() {
+//        return pedido;
+//    }
+//
+//    public void setPedido(PedidoModels pedido) {
+//        this.pedido = pedido;
+//    }
 
     public String getCodigoRastreio() {
         return codigoRastreio;
@@ -78,7 +78,7 @@ public class VendaModels {
                 ", codigoRastreio='" + codigoRastreio + '\'' +
                 ", paypalOrderId='" + paypalOrderId + '\'' +
                 ", paypalOrderStatus='" + paypalOrderStatus + '\'' +
-                ", pedido=" + pedido +
+//                ", pedido=" + pedido +
                 '}';
     }
 }
