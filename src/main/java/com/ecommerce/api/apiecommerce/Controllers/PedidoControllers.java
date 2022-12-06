@@ -29,7 +29,8 @@ public class PedidoControllers {
     public ResponseEntity<Object> savePedidoUser(@RequestBody @Valid PedidoDto pedidoDto){
         var pedidoModels = new PedidoModels();
         BeanUtils.copyProperties(pedidoDto,pedidoModels);
-        System.err.println(pedidoModels);
+        System.err.println(pedidoModels.toString()+ "  /n  "+ pedidoDto);
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(pedidoServices.save(pedidoModels));
 

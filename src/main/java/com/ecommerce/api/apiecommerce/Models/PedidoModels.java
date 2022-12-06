@@ -27,7 +27,7 @@ public class PedidoModels {
 
     @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER) // OneToMany associate aos contacts
     @Fetch(FetchMode.SUBSELECT)
-    private List<ProductModels> produtos;
+    private List<ProductModels> produto;
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private EnderecoModels endereco;
 
@@ -46,14 +46,14 @@ public class PedidoModels {
         this.cliente = cliente;
     }
 
-    public PedidoModels(long numeroPedido, Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, List<ProductModels> produtos, EnderecoModels endereco, ClienteModels cliente) {
+    public PedidoModels(long numeroPedido, Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, List<ProductModels> produto, EnderecoModels endereco, ClienteModels cliente) {
         this.numeroPedido = numeroPedido;
         this.data_pedido = data_pedido;
         this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
-        this.produtos = produtos;
+        this.produto = produto;
         this.endereco = endereco;
         this.cliente = cliente;
     }
@@ -111,12 +111,12 @@ public class PedidoModels {
         this.numeroPedido = numeroPedido;
     }
 
-    public List<ProductModels> getProdutos() {
-        return produtos;
+    public List<ProductModels> getProduto() {
+        return produto;
     }
 
-    public void setProdutos(List<ProductModels> produtos) {
-        this.produtos = produtos;
+    public void setProduto(List<ProductModels> produto) {
+        this.produto = produto;
     }
 
     public EnderecoModels getEndereco() {
@@ -133,5 +133,20 @@ public class PedidoModels {
 
     public void setCliente(ClienteModels cliente) {
         this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoModels{" +
+                "numeroPedido=" + numeroPedido +
+                ", data_pedido=" + data_pedido +
+                ", status='" + status + '\'' +
+                ", valor_total=" + valor_total +
+                ", valor_frete=" + valor_frete +
+                ", data_entrega=" + data_entrega +
+                ", produto=" + produto +
+                ", endereco=" + endereco +
+                ", cliente=" + cliente +
+                '}';
     }
 }

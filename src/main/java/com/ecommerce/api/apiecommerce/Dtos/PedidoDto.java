@@ -22,13 +22,13 @@ public class PedidoDto {
     private Date data_entrega;
 
     @NotNull
-    private List<ProductModels> produtos;
+    private List<ProductModels> produto;
     @NotNull
     private EnderecoModels endereco;
     @NotNull
     private ClienteModels cliente;
 
-    public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, Float peso_pedido, String nomeRecebedor, EnderecoModels endereco, ClienteModels cliente) {
+    public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, EnderecoModels endereco, ClienteModels cliente) {
         this.data_pedido = data_pedido;
         this.status = status;
         this.valor_total = valor_total;
@@ -38,13 +38,13 @@ public class PedidoDto {
         this.cliente = cliente;
     }
 
-    public PedidoDto(Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, List<ProductModels> produtos, EnderecoModels endereco, ClienteModels cliente) {
+    public PedidoDto(Date data_pedido, String status, Float valor_total, Float valor_frete, Date data_entrega, List<ProductModels> produto, EnderecoModels endereco, ClienteModels cliente) {
         this.data_pedido = data_pedido;
         this.status = status;
         this.valor_total = valor_total;
         this.valor_frete = valor_frete;
         this.data_entrega = data_entrega;
-        this.produtos = produtos;
+        this.produto = produto;
         this.endereco = endereco;
         this.cliente = cliente;
     }
@@ -58,6 +58,7 @@ public class PedidoDto {
         this.endereco = endereco;
         this.cliente = cliente;
     }
+
 
     public PedidoDto() {
     }
@@ -103,12 +104,12 @@ public class PedidoDto {
         this.data_entrega = data_entrega;
     }
 
-    public List<ProductModels> getProdutos() {
-        return produtos;
+    public List<ProductModels> getProduto() {
+        return produto;
     }
 
-    public void setProdutos(List<ProductModels> produtos) {
-        this.produtos = produtos;
+    public void setProdutos(List<ProductModels> produto) {
+        this.produto = produto;
     }
 
     public EnderecoModels getEndereco() {
@@ -125,5 +126,19 @@ public class PedidoDto {
 
     public void setCliente(ClienteModels cliente) {
         this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoDto{" +
+                "data_pedido=" + data_pedido +
+                ", status='" + status + '\'' +
+                ", valor_total=" + valor_total +
+                ", valor_frete=" + valor_frete +
+                ", data_entrega=" + data_entrega +
+                ", produto=" + produto +
+                ", endereco=" + endereco +
+                ", cliente=" + cliente +
+                '}';
     }
 }

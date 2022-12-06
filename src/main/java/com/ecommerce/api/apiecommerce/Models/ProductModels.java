@@ -44,6 +44,15 @@ public class ProductModels {
         this.preco_produto = preco_produto;
         this.categories = categories;
     }
+
+    public PedidoModels getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoModels pedido) {
+        this.pedido = pedido;
+    }
+
     public long getId() {
         return id;
     }

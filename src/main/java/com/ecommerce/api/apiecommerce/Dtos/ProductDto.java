@@ -1,5 +1,6 @@
 package com.ecommerce.api.apiecommerce.Dtos;
 
+import com.ecommerce.api.apiecommerce.Models.PedidoModels;
 import com.ecommerce.api.apiecommerce.Models.ProductTypeModels;
 
 import javax.persistence.Column;
@@ -20,13 +21,17 @@ public class ProductDto {
     @NotNull
     private ProductTypeModels categories;
 
-    public ProductDto(String nomeProduto, String descProduto, String URLImagem, String imagealt, float preco_produto, ProductTypeModels categories) {
+    @NotNull
+    private PedidoModels pedido;
+
+    public ProductDto(String nomeProduto, String descProduto, String URLImagem, String imagealt, float preco_produto, ProductTypeModels categories, PedidoModels pedido) {
         this.nomeProduto = nomeProduto;
         this.descProduto = descProduto;
         this.URLImagem = URLImagem;
         this.imagealt = imagealt;
         this.preco_produto = preco_produto;
         this.categories = categories;
+        this.pedido = pedido;
     }
 
     public ProductDto() {
@@ -73,6 +78,14 @@ public class ProductDto {
     }
     public String getImagealt() {
         return imagealt;
+    }
+
+    public PedidoModels getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(PedidoModels pedido) {
+        this.pedido = pedido;
     }
 
     public void setImagealt(String imagealt) {
