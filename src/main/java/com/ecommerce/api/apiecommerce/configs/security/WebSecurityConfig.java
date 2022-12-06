@@ -34,6 +34,7 @@ public class WebSecurityConfig {
                 .antMatchers(HttpMethod.POST, "/e-commerce/new-user").permitAll()
                 .antMatchers(HttpMethod.GET, "/e-commerce/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/user-products").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user-categories/**").permitAll()
 //                .antMatchers(HttpMethod.POST, "/e-commerce/").hasRole("USER")
                 .anyRequest()
                 .authenticated()
