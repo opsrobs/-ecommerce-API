@@ -21,18 +21,17 @@ public class ProductModels {
     private String imagealt;
     @Column( nullable = false)
     private float preco_produto;
-
-    @Column (nullable = false)
-    private String imagePath;
+    @JsonIgnore
+    @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
+    private PedidoModels pedido;
 
     @JsonIgnore
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private ProductTypeModels categories;
-    public ProductModels(long id, String nomeProduto, float preco_produto, String imagePath, ProductTypeModels categories) {
+    public ProductModels(long id, String nomeProduto, float preco_produto, ProductTypeModels categories) {
         this.id = id;
         this.nomeProduto = nomeProduto;
         this.preco_produto = preco_produto;
-        this.imagePath = imagePath;
         this.categories = categories;
     }
     public ProductModels() {
@@ -85,13 +84,6 @@ public class ProductModels {
         this.preco_produto = preco_produto;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
 
     public ProductTypeModels getCategories() {
         return categories;
