@@ -23,9 +23,9 @@ public class PedidoDto {
 
     @NotNull
     private List<ProductModels> produto;
-    @NotNull
+//    @NotNull
     private EnderecoModels endereco;
-    @NotNull
+//    @NotNull
     private ClienteModels cliente;
 
     public PedidoDto(Date data_pedido, Float valor, String status, Float valor_total, Float valor_frete, Date data_entrega, EnderecoModels endereco, ClienteModels cliente) {

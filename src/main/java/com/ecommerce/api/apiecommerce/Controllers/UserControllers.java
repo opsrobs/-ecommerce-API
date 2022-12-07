@@ -46,17 +46,29 @@ public class UserControllers {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.save(PessoaModels));
     }
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<Page<PessoaModels>> getAllUsers(@PageableDefault(
             page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll(pageable));
     }
 
+
+
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getUser(@PathVariable(value = "id") long id){
         Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
+        if (!PessoaModelsOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(PessoaModelsOptional.get());
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping("/user/{user}")
+    public ResponseEntity<Object> getEspecifyUser(@PathVariable(value = "user") String user){
+        Optional<PessoaModels> PessoaModelsOptional = userService.findByUserName(user);
         if (!PessoaModelsOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found");
         }

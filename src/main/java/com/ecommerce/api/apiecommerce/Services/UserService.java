@@ -33,4 +33,8 @@ public class UserService {
         return userRepositorie.findById(id);
     }
 
+    public Optional<PessoaModels> findByUserName (String username){
+        return userRepositorie.findByUserName(username);
+    }
+
 }
