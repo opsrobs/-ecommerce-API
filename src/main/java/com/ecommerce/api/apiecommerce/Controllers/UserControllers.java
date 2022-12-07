@@ -6,6 +6,7 @@ import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
 import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Services.ServiceUtils;
 import com.ecommerce.api.apiecommerce.Services.UserService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -93,19 +94,19 @@ public class UserControllers {
                 userService.save(PessoaModels));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> updateContactUser(@PathVariable(value = "id") long id){
-        Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
-        if (!PessoaModelsOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username not found");
-        }
-        var PessoaModels = new PessoaModels();
-        PessoaModels.setUserID(PessoaModelsOptional.get().getUserID());
-        PessoaModels.setNome(PessoaModelsOptional.get().getNome());
-//        PessoaModels.setLast_name(PessoaModelsOptional.get().getLast_name());
-        PessoaModels.setPassword(PessoaModelsOptional.get().getPassword());
-        PessoaModels.setUserName(PessoaModelsOptional.get().getUserName());
-        return ResponseEntity.status(HttpStatus.OK).body(
-                userService.save(PessoaModels));
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Object> updateContactUser(@PathVariable(value = "id") long id){
+//        Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
+//        if (!PessoaModelsOptional.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username not found");
+//        }
+//        var PessoaModels = new PessoaModels();
+//        PessoaModels.setUserID(PessoaModelsOptional.get().getUserID());
+//        PessoaModels.setNome(PessoaModelsOptional.get().getNome());
+////        PessoaModels.setLast_name(PessoaModelsOptional.get().getLast_name());
+//        PessoaModels.setPassword(PessoaModelsOptional.get().getPassword());
+//        PessoaModels.setUserName(PessoaModelsOptional.get().getUserName());
+//        return ResponseEntity.status(HttpStatus.OK).body(
+//                userService.save(PessoaModels));
+//    }
 }
