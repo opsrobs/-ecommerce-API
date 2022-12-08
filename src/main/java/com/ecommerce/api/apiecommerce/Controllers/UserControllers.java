@@ -4,7 +4,9 @@ import com.ecommerce.api.apiecommerce.Dtos.UserContatoDto;
 import com.ecommerce.api.apiecommerce.Dtos.PessoaDto;
 import com.ecommerce.api.apiecommerce.Models.UserContatoModels;
 import com.ecommerce.api.apiecommerce.Models.PessoaModels;
+import com.ecommerce.api.apiecommerce.Services.ServiceUtils;
 import com.ecommerce.api.apiecommerce.Services.UserService;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +32,7 @@ public class UserControllers {
         this.userService = userService;
     }
 
+    ServiceUtils serviceUtils = new ServiceUtils();
 
     @PostMapping("/new-user")
     public ResponseEntity<Object> saveUsers(@RequestBody @Valid PessoaDto PessoaDto){
@@ -39,21 +42,34 @@ public class UserControllers {
         }
         var PessoaModels = new PessoaModels();
         BeanUtils.copyProperties(PessoaDto,PessoaModels);
+//        PessoaModels.setData_nasc(serviceUtils.strToDate(PessoaDto.getData_nasc().toString()));
         System.err.println(PessoaDto +"\n" + PessoaModels);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userService.save(PessoaModels));
     }
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<Page<PessoaModels>> getAllUsers(@PageableDefault(
             page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(userService.findAll(pageable));
     }
 
+
+
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getUser(@PathVariable(value = "id") long id){
         Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
+        if (!PessoaModelsOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(PessoaModelsOptional.get());
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @GetMapping("/user/{user}")
+    public ResponseEntity<Object> getEspecifyUser(@PathVariable(value = "user") String user){
+        Optional<PessoaModels> PessoaModelsOptional = userService.findByUserName(user);
         if (!PessoaModelsOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found");
         }
@@ -78,19 +94,19 @@ public class UserControllers {
                 userService.save(PessoaModels));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Object> updateContactUser(@PathVariable(value = "id") long id){
-        Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
-        if (!PessoaModelsOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username not found");
-        }
-        var PessoaModels = new PessoaModels();
-        PessoaModels.setUserID(PessoaModelsOptional.get().getUserID());
-        PessoaModels.setNome(PessoaModelsOptional.get().getNome());
-//        PessoaModels.setLast_name(PessoaModelsOptional.get().getLast_name());
-        PessoaModels.setPassword(PessoaModelsOptional.get().getPassword());
-        PessoaModels.setUserName(PessoaModelsOptional.get().getUserName());
-        return ResponseEntity.status(HttpStatus.OK).body(
-                userService.save(PessoaModels));
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Object> updateContactUser(@PathVariable(value = "id") long id){
+//        Optional<PessoaModels> PessoaModelsOptional = userService.findById(id);
+//        if (!PessoaModelsOptional.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username not found");
+//        }
+//        var PessoaModels = new PessoaModels();
+//        PessoaModels.setUserID(PessoaModelsOptional.get().getUserID());
+//        PessoaModels.setNome(PessoaModelsOptional.get().getNome());
+////        PessoaModels.setLast_name(PessoaModelsOptional.get().getLast_name());
+//        PessoaModels.setPassword(PessoaModelsOptional.get().getPassword());
+//        PessoaModels.setUserName(PessoaModelsOptional.get().getUserName());
+//        return ResponseEntity.status(HttpStatus.OK).body(
+//                userService.save(PessoaModels));
+//    }
 }

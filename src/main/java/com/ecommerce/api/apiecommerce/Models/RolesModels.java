@@ -1,6 +1,7 @@
 package com.ecommerce.api.apiecommerce.Models;
 
 import com.ecommerce.api.apiecommerce.Enums.RoleName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class RolesModels implements GrantedAuthority, Serializable {
     private RoleName roleName;
 
     @Override
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String getAuthority() {
         return this.roleName.toString();
     }

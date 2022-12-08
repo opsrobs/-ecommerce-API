@@ -40,7 +40,11 @@ public class UserService {
             throw new UsernameNotFoundException("Usuário [" + username + "] não encontrado");
         }
 
+
         return new PessoaModels(username);
+    }
+    public Optional<PessoaModels> findByUserName (String username){
+        return userRepositorie.findByUserName(username);
     }
 
 }

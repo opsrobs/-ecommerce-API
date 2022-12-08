@@ -38,14 +38,14 @@ public class ProductTypeControllers {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(porductTypeServices.save(productTypeModels));
     }
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<Page<ProductTypeModels>> getAllCategories(@PageableDefault(
             page = 0,size = 10,sort = "id",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(porductTypeServices.findAll(pageable));
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Object> getCategorieById(@PathVariable(value = "id") long id){
         Optional<ProductTypeModels> productTypeModels = porductTypeServices.findById(id);

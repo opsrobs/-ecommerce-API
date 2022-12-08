@@ -1,7 +1,9 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
 import com.ecommerce.api.apiecommerce.Dtos.PedidoDto;
+import com.ecommerce.api.apiecommerce.Dtos.PessoaDto;
 import com.ecommerce.api.apiecommerce.Models.PedidoModels;
+import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Services.PedidoServices;
 import com.ecommerce.api.apiecommerce.Services.ServiceUtils;
 import org.springframework.beans.BeanUtils;
@@ -29,7 +31,8 @@ public class PedidoControllers {
     public ResponseEntity<Object> savePedidoUser(@RequestBody @Valid PedidoDto pedidoDto){
         var pedidoModels = new PedidoModels();
         BeanUtils.copyProperties(pedidoDto,pedidoModels);
-        System.err.println(pedidoModels);
+        System.err.println(pedidoModels.toString()+ "  /n  "+ pedidoDto);
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(pedidoServices.save(pedidoModels));
 
@@ -49,4 +52,5 @@ public class PedidoControllers {
     public ResponseEntity<Page<PedidoModels>> getAllPedido(@PageableDefault(page = 0, size = 10, sort = "numeroPedido", direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(pedidoServices.findAll(pageable));
     }
+
 }

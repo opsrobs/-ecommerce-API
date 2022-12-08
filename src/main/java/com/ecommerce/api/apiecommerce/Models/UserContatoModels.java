@@ -78,7 +78,7 @@ public class UserContatoModels {
     public String toString() {
         return "UserContatoModels{" +
                 "id_contato=" + id_contato +
-                ", user=" + user.getUserID() +
+                ", user=" + user +
                 ", date_created=" + date_created +
                 ", status_telefone=" + status_telefone +
                 ", telefone='" + telefone + '\'' +

@@ -1,6 +1,8 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
+import com.ecommerce.api.apiecommerce.Dtos.PedidoDto;
 import com.ecommerce.api.apiecommerce.Dtos.ProductDto;
+import com.ecommerce.api.apiecommerce.Models.PedidoModels;
 import com.ecommerce.api.apiecommerce.Models.ProductModels;
 import com.ecommerce.api.apiecommerce.Services.ProductServices;
 import org.springframework.beans.BeanUtils;
@@ -40,7 +42,7 @@ public class ProductControllers {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(productServices.save(productModels));
     }
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
     public ResponseEntity<Page<ProductModels>> getAllProducts(@PageableDefault(
             page = 0,size = 10,sort = "id",direction = Sort.Direction.ASC) Pageable pageable){
@@ -52,6 +54,20 @@ public class ProductControllers {
     public ResponseEntity<Object> getProductById(@PathVariable(value = "id") long id){
         Optional<ProductModels> productModels = productServices.findByid(id);
         return productModels.<ResponseEntity<Object>>map(typeModels -> ResponseEntity.status(HttpStatus.OK).body(typeModels)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body("username not found"));
+    }
+
+    @PutMapping("/produto/{id}")
+    public ResponseEntity<Object> insertPedido(@PathVariable(value = "id") long id,
+                                               @RequestBody @Valid ProductDto productDto){
+        Optional<ProductModels> productModels = productServices.findById(id);
+        if (!productModels.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("produto not found");
+        }
+        var produto = new ProductModels();
+        BeanUtils.copyProperties(productDto, produto);
+        produto.setPedido(productDto.getPedido());
+        return ResponseEntity.status(HttpStatus.OK).body(
+                productServices.save(produto));
     }
 
 

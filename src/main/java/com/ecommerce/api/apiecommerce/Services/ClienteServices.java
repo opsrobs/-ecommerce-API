@@ -31,4 +31,8 @@ public class ClienteServices {
     public Optional<ClienteModels> findById(long id) {
         return clienteRepositories.findById(id);
     }
+
+    public Optional<ClienteModels> findByPessoa(long id) {
+        return clienteRepositories.findByPessoa(id);
+    }
 }

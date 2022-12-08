@@ -36,7 +36,7 @@ public class PessoaModels implements UserDetails, Serializable {
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
     @OneToOne(mappedBy = "pessoa")
-    @JsonIgnore
+//    @JsonIgnore
     private ClienteModels cliente;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // OneToMany associate aos contacts
@@ -89,6 +89,7 @@ public class PessoaModels implements UserDetails, Serializable {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
     }
@@ -98,26 +99,31 @@ public class PessoaModels implements UserDetails, Serializable {
         return this.password;
     }
 
+    @JsonIgnore
     public String getUsername() {
         return this.userName;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
@@ -204,7 +210,7 @@ public class PessoaModels implements UserDetails, Serializable {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +
-//                ", cliente=" + cliente +
+                ", cliente=" + cliente +
                 ", contatos=" + contatos +
                 ", emails=" + emails +
                 '}';

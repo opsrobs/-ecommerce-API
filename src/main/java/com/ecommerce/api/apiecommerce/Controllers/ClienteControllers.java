@@ -41,6 +41,16 @@ public class ClienteControllers {
 
     }
 
+    @GetMapping("/user/{idpessoa}")
+    public ResponseEntity<Object> getClientesByPerson(@PathVariable(value = "idpessoa") long idpessoa){
+        Optional<ClienteModels> clienteModels = clienteServices.findByPessoa(idpessoa);
+        if (!clienteModels.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente not found");
+        }
+        System.err.println(clienteModels.toString());
+        return ResponseEntity.status(HttpStatus.OK).body(clienteModels.get());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> getClientes(@PathVariable(value = "id") long id){
         Optional<ClienteModels> clienteModels = clienteServices.findById(id);
@@ -53,8 +63,9 @@ public class ClienteControllers {
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping
-    public ResponseEntity<Page<ClienteModels>> getAllAddress(@PageableDefault(
+    public ResponseEntity<Page<ClienteModels>> getAllClients(@PageableDefault(
             page = 0,size = 10,sort = "idCliente",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(clienteServices.findAll(pageable));
     }
+
 }
