@@ -36,7 +36,7 @@ public class PessoaModels implements UserDetails, Serializable {
     inverseJoinColumns = @JoinColumn(name= "role_id"))
     private List<RolesModels> roles;
     @OneToOne(mappedBy = "pessoa")
-//    @JsonIgnore
+   @JsonIgnore
     private ClienteModels cliente;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // OneToMany associate aos contacts
