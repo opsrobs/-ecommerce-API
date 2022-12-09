@@ -64,13 +64,13 @@ public class BairroModels {
         this.endereco = endereco;
     }
 
-    @Override
-    public String toString() {
-        return "BairroModels{" +
-                "idBairro=" + idBairro +
-                ", nomeBairro='" + nomeBairro + '\'' +
-                ", city=" + city +
-                ", endereco=" + endereco +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "BairroModels{" +
+//                "idBairro=" + idBairro +
+//                ", nomeBairro='" + nomeBairro + '\'' +
+//                ", city=" + city +
+//                ", endereco=" + endereco +
+//                '}';
+//    }
 }

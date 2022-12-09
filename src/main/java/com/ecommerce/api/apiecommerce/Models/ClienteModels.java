@@ -38,11 +38,11 @@ public class ClienteModels {
         this.pessoa = pessoa;
     }
 
-    @Override
-    public String toString() {
-        return "ClienteModels{" +
-                "idCliente=" + idCliente +
-                ", pessoa=" + pessoa +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "ClienteModels{" +
+//                "idCliente=" + idCliente +
+//                ", pessoa=" + pessoa +
+//                '}';
+//    }
 }

@@ -51,13 +51,13 @@ public class CityModels {
         this.stade = stade;
     }
 
-    @Override
-    public String toString() {
-        return "CityModels{" +
-                "idCidade=" + idCidade +
-                ", nome_city='" + nome_city + '\'' +
-                ", bairro=" + bairro +
-                ", stade=" + stade +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "CityModels{" +
+//                "idCidade=" + idCidade +
+//                ", nome_city='" + nome_city + '\'' +
+//                ", bairro=" + bairro +
+//                ", stade=" + stade +
+//                '}';
+//    }
 }

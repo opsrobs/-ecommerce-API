@@ -45,12 +45,4 @@ public class ProductTypeModels {
         this.nomeTipo = nomeTipo;
     }
 
-    @Override
-    public String toString() {
-        return "ProductTypeModels{" +
-                "id=" + id +
-                ", nomeTipo='" + nomeTipo + '\'' +
-                ", produtos=" + produtos +
-                '}';
-    }
 }

@@ -200,19 +200,19 @@ public class PessoaModels implements UserDetails, Serializable {
 //        this.cliente = cliente;
 //    }
 
-    @Override
-    public String toString() {
-        return "PessoaModels{" +
-                "userID=" + userID +
-                ", nome='" + nome + '\'' +
-                ", cpf_cnpj='" + cpf_cnpj + '\'' +
-                ", data_nasc=" + data_nasc +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                ", cliente=" + cliente +
-                ", contatos=" + contatos +
-                ", emails=" + emails +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "PessoaModels{" +
+//                "userID=" + userID +
+//                ", nome='" + nome + '\'' +
+//                ", cpf_cnpj='" + cpf_cnpj + '\'' +
+//                ", data_nasc=" + data_nasc +
+//                ", userName='" + userName + '\'' +
+//                ", password='" + password + '\'' +
+//                ", roles=" + roles +
+//                ", cliente=" + cliente +
+//                ", contatos=" + contatos +
+//                ", emails=" + emails +
+//                '}';
+//    }
 }

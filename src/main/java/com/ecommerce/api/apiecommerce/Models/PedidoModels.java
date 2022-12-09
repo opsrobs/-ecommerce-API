@@ -25,8 +25,14 @@ public class PedidoModels {
     @Column(nullable = true)
     private Date data_entrega;
 
-    @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER) // OneToMany associate aos contacts
-    @Fetch(FetchMode.SUBSELECT)
+//    @OneToMany(mappedBy = "pedido", fetch = FetchType.EAGER) // OneToMany associate aos contacts
+//    @Fetch(FetchMode.SUBSELECT)
+//    private List<ProductModels> produto;
+
+    @ManyToMany
+        @JoinTable(name = "TB_USER_PURCHASE",
+            joinColumns = @JoinColumn(name= "numeroPedido"),
+            inverseJoinColumns = @JoinColumn(name= "id"))
     private List<ProductModels> produto;
     @ManyToOne @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     private EnderecoModels endereco;
