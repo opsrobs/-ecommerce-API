@@ -1,9 +1,7 @@
 package com.ecommerce.api.apiecommerce.Controllers;
 
 import com.ecommerce.api.apiecommerce.Dtos.PedidoDto;
-import com.ecommerce.api.apiecommerce.Dtos.PessoaDto;
 import com.ecommerce.api.apiecommerce.Models.PedidoModels;
-import com.ecommerce.api.apiecommerce.Models.PessoaModels;
 import com.ecommerce.api.apiecommerce.Services.PedidoServices;
 import com.ecommerce.api.apiecommerce.Services.ServiceUtils;
 import org.springframework.beans.BeanUtils;
@@ -51,6 +49,22 @@ public class PedidoControllers {
     @GetMapping
     public ResponseEntity<Page<PedidoModels>> getAllPedido(@PageableDefault(page = 0, size = 10, sort = "numeroPedido", direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(pedidoServices.findAll(pageable));
+    }
+
+    @PutMapping("/pedido/{id}")
+    public ResponseEntity<Object> updateUser(@PathVariable(value = "id") long id,
+                                             @RequestBody @Valid PedidoDto pedidoDto){
+        Optional<PedidoModels> pedidoModelsOptional = pedidoServices.findById(id);
+        if (!pedidoModelsOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Username not found");
+        }
+        var pedido = new PedidoModels();
+        BeanUtils.copyProperties(pedidoDto, pedido);
+
+        pedido.setCliente(pedidoDto.getCliente());
+        pedido.setValor_total(pedidoDto.getValor_total());
+        return ResponseEntity.status(HttpStatus.OK).body(
+                pedidoServices.save(pedido));
     }
 
 }

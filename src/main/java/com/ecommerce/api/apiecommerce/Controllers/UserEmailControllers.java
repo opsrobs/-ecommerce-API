@@ -67,7 +67,7 @@ public class UserEmailControllers {
 
     @GetMapping
     public ResponseEntity<Page<UserEmailModels>> getAllUsers(@PageableDefault(
-            page = 0,size = 10,sort = "userID",direction = Sort.Direction.ASC) Pageable pageable){
+            page = 0,size = 10,sort = "idEmail",direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(userEmailService.findAll(pageable));
     }
 
